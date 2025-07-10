@@ -39,7 +39,7 @@ class WithdrawalListItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 6),
-              // MODIFIED: Date/TRX text is now grey and regular weight
+              
               Text(
                 '$date • $trxId',
                 style: const TextStyle(
@@ -55,7 +55,7 @@ class WithdrawalListItem extends StatelessWidget {
     );
   }
 
-  // UNCHANGED: The status badge logic remains the same.
+  
   Widget _buildStatusBadge() {
     Color badgeColor;
     String text;

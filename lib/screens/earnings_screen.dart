@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart'; // Assuming your main file is in this path
+import 'package:appsip/main.dart'; 
 import 'package:appsip/widgets/withdrawal_list_item.dart';
 import 'package:appsip/screens/edit_bank_details_screen.dart';
 import 'package:appsip/widgets/withdraw_amount_sheet.dart';
@@ -25,7 +25,7 @@ class EarningsScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Earnings', style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal,color: AppColors.primaryRed)),
+            const Text('Earnings', style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal,color: AppColors.primaryRed)),
             const SizedBox(height: 4),
             Text('View your total earnings.', style: TextStyle(fontSize: 14, color: AppColors.textSecondary.withOpacity(0.8))),
           ],
@@ -74,7 +74,7 @@ class EarningsScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // --- THIS IS THE ONLY LINE THAT WAS CHANGED ---
+      
         const Text('Overview', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
         // ---------------------------------------------
         Container(
