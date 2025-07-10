@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart'; // Assuming your main.dart is in this path
+import 'package:appsip/main.dart';
 import 'dart:async';
 
 class WithdrawAmountSheet extends StatefulWidget {
@@ -65,7 +65,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFF1C1C1E), // Dark background from Figma
+        color: Color(0xFF1C1C1E),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25),
           topRight: Radius.circular(25),
@@ -108,7 +108,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
           showCursor: true,
           cursorColor: AppColors.primaryRed,
           style: const TextStyle(
-            fontSize: 24, // Font size for the amount text
+            fontSize: 20, 
             fontWeight: FontWeight.bold,
             color: AppColors.textPrimary,
           ),
@@ -233,7 +233,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: const Color(0xFF2C2C2E), // Dark grey key background
+              color: const Color(0xFF2C2C2E), 
               borderRadius: BorderRadius.circular(16),
             ),
             child: key['num'] == 'DEL'
@@ -253,7 +253,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
   }
 }
 
-// Success Dialogs remain the same
+
 class SuccessDialog extends StatelessWidget {
   const SuccessDialog({Key? key}) : super(key: key);
 
