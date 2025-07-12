@@ -1,6 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:appsip/main.dart';
 import 'dart:async';
+import 'package:appsip/widgets/primary_button.dart';
 
 class WithdrawAmountSheet extends StatefulWidget {
   const WithdrawAmountSheet({super.key});
@@ -10,7 +13,6 @@ class WithdrawAmountSheet extends StatefulWidget {
 }
 
 class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
-  // Using a controller to manage the text input
   final TextEditingController _amountController = TextEditingController(text: '0.00');
 
   @override
@@ -27,33 +29,30 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
       } else {
         currentText = '0';
       }
-       double numericValue = double.parse(currentText) / 100;
-       _amountController.text = numericValue.toStringAsFixed(2);
+      double numericValue = double.parse(currentText) / 100;
+      _amountController.text = numericValue.toStringAsFixed(2);
     } else if (value == '+*#') {
-      // Functionality for this key can be added here if needed
       return;
     } else {
       String currentText = _amountController.text.replaceAll('.', '');
-       if (currentText == '0') {
-         currentText = value;
-       } else if (currentText.length < 9) { // Limit to 9 digits before decimal
-         currentText += value;
-       }
-       double numericValue = double.parse(currentText) / 100;
-       _amountController.text = numericValue.toStringAsFixed(2);
+      if (currentText == '0') {
+        currentText = value;
+      } else if (currentText.length < 9) {
+        currentText += value;
+      }
+      double numericValue = double.parse(currentText) / 100;
+      _amountController.text = numericValue.toStringAsFixed(2);
     }
-    setState(() {}); // Trigger a rebuild to reflect changes
+    setState(() {});
   }
 
-
   void _showSuccessAndPop() {
-    Navigator.pop(context); // Close the bottom sheet
+    Navigator.pop(context);
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => const SuccessDialog(),
     );
-    // After 2 seconds, close the success dialog
     Timer(const Duration(seconds: 2), () {
       if (Navigator.of(context).canPop()) {
         Navigator.of(context).pop();
@@ -107,11 +106,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
           readOnly: true,
           showCursor: true,
           cursorColor: AppColors.primaryRed,
-          style: const TextStyle(
-            fontSize: 20, 
-            fontWeight: FontWeight.bold,
-            color: AppColors.textPrimary,
-          ),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
           decoration: InputDecoration(
             prefixIcon: const Padding(
               padding: EdgeInsets.only(left: 16, top: 12, right: 8),
@@ -180,28 +175,19 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
     return Row(
       children: [
         Expanded(
-          child: OutlinedButton(
+          child: PrimaryButton(
+            text: 'Cancel',
             onPressed: () => Navigator.pop(context),
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              backgroundColor: const Color(0xFF2C2C2E), // Dark grey button background
-              side: const BorderSide(color: Colors.transparent),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            ),
-            child: const Text('Cancel', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+            backgroundColor: const Color(0xFF2C2C2E),
+            borderRadius: 16,
           ),
         ),
         const SizedBox(width: 16),
         Expanded(
-          child: ElevatedButton(
+          child: PrimaryButton(
+            text: 'Withdraw Ammount',
             onPressed: _showSuccessAndPop,
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              backgroundColor: AppColors.primaryRed,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            ),
-            // Matching the typo from Figma
-            child: const Text('Withdraw Ammount', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            borderRadius: 16,
           ),
         ),
       ],
@@ -232,10 +218,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
           borderRadius: BorderRadius.circular(16),
           child: Container(
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: const Color(0xFF2C2C2E), 
-              borderRadius: BorderRadius.circular(16),
-            ),
+            decoration: BoxDecoration(color: const Color(0xFF2C2C2E), borderRadius: BorderRadius.circular(16)),
             child: key['num'] == 'DEL'
                 ? const Icon(Icons.backspace_outlined, color: AppColors.textPrimary)
                 : Column(
@@ -252,7 +235,6 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
     );
   }
 }
-
 
 class SuccessDialog extends StatelessWidget {
   const SuccessDialog({Key? key}) : super(key: key);

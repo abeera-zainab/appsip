@@ -1,5 +1,7 @@
+import 'package:appsip/widgets/primary_button.dart';
+import 'package:appsip/widgets/section_header.dart';
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart'; // Assuming your main.dart is in this path
+import 'package:appsip/main.dart'; 
 
 class ChallengesScreen extends StatelessWidget {
   const ChallengesScreen({super.key});
@@ -53,11 +55,27 @@ class ChallengesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildOverviewHeader(),
+            SectionHeader(
+              title: 'Overview',
+              trailing: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: AppColors.cardColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Row(
+                  children: [
+                    Text('Today', style: TextStyle(color: AppColors.textSecondary)),
+                    SizedBox(width: 4),
+                    Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary, size: 20),
+                  ],
+                ),
+              ),
+            ),
             const SizedBox(height: 16),
             _buildOverviewCards(),
             const SizedBox(height: 32),
-            const Text('Weekly Challenges', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SectionHeader(title: 'Weekly Challenges'),
             const SizedBox(height: 16),
             _buildChallengeCard(
               context: context,
@@ -68,16 +86,15 @@ class ChallengesScreen extends StatelessWidget {
               total: 5,
             ),
             const SizedBox(height: 12),
-            // Example of another challenge card
             _buildChallengeCard(
               context: context,
               title: 'Triple Night',
               reward: '+15.00',
               description: 'Redeem Skills 3 nights in a row.',
-              isFullyCompleted: true, // This one is already done
+              isFullyCompleted: true,
             ),
             const SizedBox(height: 32),
-            const Text('Overall Challenges', style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal)),
+            const SectionHeader(title: 'Overall Challenges', titleStyle: TextStyle(fontSize: 22, fontWeight: FontWeight.normal)),
             const SizedBox(height: 16),
             _buildChallengeCard(
               context: context,
@@ -94,35 +111,12 @@ class ChallengesScreen extends StatelessWidget {
               reward: '+30.00',
               description: 'Reach your first 10 successful pass redeems.',
               progress: 10,
-              total: 10, // Completed but not collected
+              total: 10,
               isCompleted: true,
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildOverviewHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text('Overview', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: BoxDecoration(
-            color: AppColors.cardColor,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: const Row(
-            children: [
-              Text('Today', style: TextStyle(color: AppColors.textSecondary)),
-              SizedBox(width: 4),
-              Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary, size: 20),
-            ],
-          ),
-        ),
-      ],
     );
   }
 
@@ -153,8 +147,10 @@ class ChallengesScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
+        // ignore: deprecated_member_use
         color: AppColors.primaryRed.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20),
+        // ignore: deprecated_member_use
         border: Border.all(color: AppColors.primaryRed.withOpacity(0.5)),
       ),
       child: Row(
@@ -170,10 +166,12 @@ class ChallengesScreen extends StatelessWidget {
   Widget _buildBonusCard(String title, String amount, String cents) {
     return Container(
       padding: const EdgeInsets.all(20),
-      height: 154, // To match height of the two cards + sizedbox
+      height: 154,
       decoration: BoxDecoration(
+        // ignore: deprecated_member_use
         color: AppColors.primaryRed.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20),
+        // ignore: deprecated_member_use
         border: Border.all(color: AppColors.primaryRed.withOpacity(0.5)),
       ),
       child: Column(
@@ -208,8 +206,10 @@ class ChallengesScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
+        // ignore: deprecated_member_use
         color: AppColors.primaryRed.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20),
+        // ignore: deprecated_member_use
         border: Border.all(color: AppColors.primaryRed.withOpacity(0.5)),
       ),
       child: Column(
@@ -222,6 +222,7 @@ class ChallengesScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: AppColors.paidGreen.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -247,20 +248,17 @@ class ChallengesScreen extends StatelessWidget {
                 const SizedBox(width: 8),
                 const Text('Completed', style: TextStyle(color: AppColors.primaryRed, fontWeight: FontWeight.bold)),
                 const Spacer(),
-                ElevatedButton.icon(
+                PrimaryButton(
+                  text: 'Collect Reward',
                   onPressed: () => _showRewardCollected(context),
                   icon: const Icon(Icons.military_tech, size: 16),
-                  label: const Text('Collect Reward'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.paidGreen,
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                  ),
+                  backgroundColor: AppColors.paidGreen,
+                  foregroundColor: Colors.black,
+                  borderRadius: 20,
                 ),
               ],
             )
           else
-            // Custom Progress Bar
             LayoutBuilder(
               builder: (ctx, constraints) {
                 return Stack(
@@ -269,6 +267,7 @@ class ChallengesScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 28,
                       decoration: BoxDecoration(
+                        // ignore: deprecated_member_use
                         color: Colors.black.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -303,7 +302,6 @@ class ChallengesScreen extends StatelessWidget {
   }
 }
 
-// The dialog remains the same as it's a separate component
 class RewardCollectedDialog extends StatelessWidget {
   const RewardCollectedDialog({super.key});
 

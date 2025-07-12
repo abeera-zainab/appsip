@@ -29,7 +29,6 @@ class WithdrawalListItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // MODIFIED: Amount text is now red and bold
               Text(
                 '\$$amount',
                 style: const TextStyle(
@@ -39,7 +38,6 @@ class WithdrawalListItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 6),
-              
               Text(
                 '$date • $trxId',
                 style: const TextStyle(
@@ -55,7 +53,6 @@ class WithdrawalListItem extends StatelessWidget {
     );
   }
 
-  
   Widget _buildStatusBadge() {
     Color badgeColor;
     String text;
@@ -83,6 +80,7 @@ class WithdrawalListItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
+        // ignore: deprecated_member_use
         color: badgeColor.withOpacity(0.2),
         borderRadius: BorderRadius.circular(20),
       ),
