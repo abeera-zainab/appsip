@@ -12,7 +12,6 @@ class AppColors {
   static const Color pendingYellow = Color(0xFFD1A11E);
   static const Color failedRed = Color(0xFFE53935);
   static const Color bottomNavBackground = Color(0xFF1A1A1A);
-  
 }
 
 void main() {
@@ -42,7 +41,8 @@ class MyApp extends StatelessWidget {
           filled: true,
           fillColor: AppColors.cardColor,
           hintStyle: TextStyle(
-            color: Color.fromRGBO(176, 176, 176, 0.5), // Fixed line
+            // ignore: deprecated_member_use
+            color: const Color(0xFFB0B0B0).withOpacity(0.5),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.0),
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: AppColors.primaryRed,
               width: 1.5,
             ),
