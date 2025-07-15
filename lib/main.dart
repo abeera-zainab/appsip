@@ -1,4 +1,5 @@
 import 'package:appsip/screens/invitation_screen.dart';
+import 'package:appsip/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appsip/screens/main_screen_shell.dart';
 
@@ -64,7 +65,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MainScreenShell(),
+      home: 
+      const RegisterBartenderScreen()
+      //const MainScreenShell(),
       
     );
   }
