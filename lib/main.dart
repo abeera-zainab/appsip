@@ -1,3 +1,4 @@
+import 'package:appsip/screens/invitation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appsip/screens/main_screen_shell.dart';
 
@@ -12,6 +13,8 @@ class AppColors {
   static const Color pendingYellow = Color(0xFFD1A11E);
   static const Color failedRed = Color(0xFFE53935);
   static const Color bottomNavBackground = Color(0xFF1A1A1A);
+   static const Color gradientStart = Color(0xFF2DE1C2);
+  static const Color gradientEnd = Color(0xFF24A5D5);
 }
 
 void main() {
@@ -62,6 +65,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const MainScreenShell(),
+      
     );
   }
 }

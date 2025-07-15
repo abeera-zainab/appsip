@@ -15,6 +15,7 @@ class _MainScreenShellState extends State<MainScreenShell> {
   int _selectedIndex = 1; // Corresponds to 'Earnings'
 
   final List<Widget> _screens = [
+    
     const RedeemsScreen(),
     const EarningsScreen(),
     const ChallengesScreen(),
