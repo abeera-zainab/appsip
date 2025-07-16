@@ -1,8 +1,8 @@
-// screens/register_bartender_screen.dart
-
 import 'package:appsip/main.dart';
+import 'package:appsip/screens/tell_us_about_yourself_screen.dart' show TellUsAboutYourselfScreen;
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:appsip/screens/register_screen.dart';
 
 class RegisterBartenderScreen extends StatefulWidget {
   const RegisterBartenderScreen({super.key});
@@ -15,6 +15,13 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isPasswordObscured = true;
   bool _isConfirmPasswordObscured = true;
+  final TextEditingController _dateOfBirthController = TextEditingController();
+
+  @override
+  void dispose() {
+    _dateOfBirthController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +66,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
               _buildTextField(
                 label: "Phone Number",
                 hint: "+1 (XXX) XXXX XXX",
-                prefixIcon: Icons.flag_circle_outlined, // Placeholder for flag
+                prefixIcon: Icons.flag_circle_outlined,
                 keyboardType: TextInputType.phone,
               ),
               const SizedBox(height: 20),
@@ -70,14 +77,18 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 hint: "Choose a date --",
                 suffixIcon: Icons.calendar_today_outlined,
                 readOnly: true,
+                controller: _dateOfBirthController,
                 onTap: () async {
-                  // Implement date picker logic
-                  await showDatePicker(
+                  final pickedDate = await showDatePicker(
                     context: context,
                     initialDate: DateTime(2002),
                     firstDate: DateTime(1950),
                     lastDate: DateTime.now(),
                   );
+                  if (pickedDate != null) {
+                    final formattedDate = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
+                    _dateOfBirthController.text = formattedDate;
+                  }
                 },
               ),
               Padding(
@@ -85,7 +96,6 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 child: Text(
                   "Your age must be 21 or above",
                   style: TextStyle(
-                    // ignore: deprecated_member_use
                     color: AppColors.pendingYellow.withOpacity(0.9),
                     fontSize: 12,
                   ),
@@ -128,7 +138,11 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 text: "Create Account",
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // Handle registration logic
+                    print('Form is Valid');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const TellUsAboutYourselfScreen()),
+                    );
                   }
                 },
                 isExpanded: true,
@@ -153,6 +167,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
     VoidCallback? onTap,
     VoidCallback? onSuffixIconTap,
     TextInputType? keyboardType,
+    TextEditingController? controller,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,6 +178,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
         ),
         const SizedBox(height: 8),
         TextFormField(
+          controller: controller,
           readOnly: readOnly,
           onTap: onTap,
           obscureText: obscureText,

@@ -1,7 +1,10 @@
 // screens/invitation_key_screen.dart
 
+// ignore_for_file: deprecated_member_use
+
 import 'package:appsip/main.dart';
-import 'package:appsip/screens/register_screen.dart';
+import 'package:appsip/screens/register_screen.dart' show RegisterBartenderScreen;
+
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
