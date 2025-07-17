@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:io'; // Required for the File type
+import 'package:appsip/screens/edit_bank.dart';
+import 'package:appsip/screens/edit_bank_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appsip/main.dart';
 import 'package:image_picker/image_picker.dart'; // For image picking
@@ -218,6 +220,10 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
         onPressed: () {
           // TODO: Add navigation to the next screen
           print('Next button pressed!');
+            Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const BankDetailsScreen()),
+                    );
           print('Selected image path: ${_selectedImage?.path}');
           print('Selected color: ${_backgroundColors[_selectedColorIndex]}');
         },

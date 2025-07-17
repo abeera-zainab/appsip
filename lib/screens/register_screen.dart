@@ -96,6 +96,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 child: Text(
                   "Your age must be 21 or above",
                   style: TextStyle(
+                    // ignore: deprecated_member_use
                     color: AppColors.pendingYellow.withOpacity(0.9),
                     fontSize: 12,
                   ),
