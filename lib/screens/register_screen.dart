@@ -96,8 +96,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 child: Text(
                   "Your age must be 21 or above",
                   style: TextStyle(
-                    // ignore: deprecated_member_use
-                    color: AppColors.pendingYellow.withOpacity(0.9),
+                    color: Theme.of(context).colorScheme.error.withOpacity(0.9),
                     fontSize: 12,
                   ),
                 ),
@@ -186,6 +185,8 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
           keyboardType: keyboardType,
           decoration: InputDecoration(
             hintText: hint,
+            filled: true,
+            fillColor: AppColors.cardColorsecondary, // Using cardColor from theme
             prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
             suffixIcon: suffixIcon != null
                 ? IconButton(
@@ -193,6 +194,14 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                     onPressed: onSuffixIconTap,
                   )
                 : null,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide.none,
+            ),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 16,
+            ),
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {

@@ -6,7 +6,7 @@ import 'package:appsip/screens/main_screen_shell.dart';
 
 // --- Define App Colors ---
 class AppColors {
-  static const Color background = Color(0xFF121212);
+  static const Color background = Color.fromARGB(102, 18, 18, 18);
   static const Color cardColor = Color(0xFF1E1E1E);
   static const Color primaryRed = Color(0xFFE53935);
   static const Color textPrimary = Colors.white;
@@ -17,6 +17,7 @@ class AppColors {
   static const Color bottomNavBackground = Color(0xFF1A1A1A);
    static const Color gradientStart = Color(0xFF2DE1C2);
   static const Color gradientEnd = Color(0xFF24A5D5);
+  static const Color cardColorsecondary= Color.fromARGB(105, 75, 10, 10);
 }
 
 void main() {
@@ -67,8 +68,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: 
-     //const InvitationKeyScreen()
-      const MainScreenShell(),
+     const InvitationKeyScreen()
+     // const MainScreenShell(),
        //const TellUsAboutYourselfScreen(),
       
     );
