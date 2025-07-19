@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/section_header.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,7 @@ class ChallengesScreen extends StatelessWidget {
           children: [
             const Text(
               'Challenges',
-              style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold, color: AppColors.primaryRed),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: AppColors.primaryRed),
             ),
             const SizedBox(height: 4),
             Text('Earn rewards while you work.', style: TextStyle(fontSize: 14, color: AppColors.textSecondary.withOpacity(0.8))),
@@ -94,7 +96,7 @@ class ChallengesScreen extends StatelessWidget {
               isFullyCompleted: true,
             ),
             const SizedBox(height: 32),
-            const SectionHeader(title: 'Overall Challenges', titleStyle: TextStyle(fontSize: 22, fontWeight: FontWeight.normal)),
+            const SectionHeader(title: 'Overall Challenges', titleStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
             const SizedBox(height: 16),
             _buildChallengeCard(
               context: context,
@@ -340,7 +342,7 @@ class RewardCollectedDialog extends StatelessWidget {
             const Text(
               'Your reward money has been added to your wallet.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.textSecondary, fontSize: 16),
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
             ),
           ],
         ),
