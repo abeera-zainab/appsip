@@ -25,7 +25,7 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Enter Invitation Key"),
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.background,
         elevation: 0,
         centerTitle: true,
       ),

@@ -28,7 +28,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Register as Bartender"),
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.background,
         elevation: 0,
         centerTitle: true,
       ),

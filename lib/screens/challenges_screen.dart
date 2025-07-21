@@ -3,7 +3,7 @@
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/section_header.dart';
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart'; 
+import 'package:appsip/main.dart';
 
 class ChallengesScreen extends StatelessWidget {
   const ChallengesScreen({super.key});
@@ -26,10 +26,16 @@ class ChallengesScreen extends StatelessWidget {
           children: [
             const Text(
               'Challenges',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: AppColors.primaryRed),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal,
+                  color: AppColors.primaryRed),
             ),
             const SizedBox(height: 4),
-            Text('Earn rewards while you work.', style: TextStyle(fontSize: 14, color: AppColors.textSecondary.withOpacity(0.8))),
+            Text('Earn rewards while you work.',
+                style: TextStyle(
+                    fontSize: 14,
+                    color: AppColors.textSecondary.withOpacity(0.8))),
           ],
         ),
         titleSpacing: 16.0,
@@ -44,9 +50,13 @@ class ChallengesScreen extends StatelessWidget {
             ),
             child: const Row(
               children: [
-                Icon(Icons.account_balance_wallet_outlined, size: 16, color: AppColors.textSecondary),
+                Icon(Icons.account_balance_wallet_outlined,
+                    size: 16, color: AppColors.textSecondary),
                 SizedBox(width: 8),
-                Text('\$12,723.32', style: TextStyle(fontWeight: FontWeight.bold,color: AppColors.textSecondary)),
+                Text('\$12,723.32',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textSecondary)),
               ],
             ),
           )
@@ -60,16 +70,19 @@ class ChallengesScreen extends StatelessWidget {
             SectionHeader(
               title: 'Overview',
               trailing: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   color: AppColors.cardColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Row(
                   children: [
-                    Text('Today', style: TextStyle(color: AppColors.textSecondary)),
+                    Text('Today',
+                        style: TextStyle(color: AppColors.textSecondary)),
                     SizedBox(width: 4),
-                    Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary, size: 20),
+                    Icon(Icons.keyboard_arrow_down,
+                        color: AppColors.textSecondary, size: 20),
                   ],
                 ),
               ),
@@ -96,7 +109,10 @@ class ChallengesScreen extends StatelessWidget {
               isFullyCompleted: true,
             ),
             const SizedBox(height: 32),
-            const SectionHeader(title: 'Overall Challenges', titleStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+            const SectionHeader(
+                title: 'Overall Challenges',
+                titleStyle:
+                    TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
             const SizedBox(height: 16),
             _buildChallengeCard(
               context: context,
@@ -157,14 +173,21 @@ class ChallengesScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(value, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: AppColors.primaryRed)),
+          Text(value,
+              style: const TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryRed)),
           const SizedBox(width: 12),
-          Expanded(child: Text(label, style: const TextStyle(color: AppColors.textSecondary, height: 1.3))),
+          Expanded(
+              child: Text(label,
+                  style: const TextStyle(
+                      color: AppColors.textSecondary, height: 1.3))),
         ],
       ),
     );
   }
-  
+
   Widget _buildBonusCard(String title, String amount, String cents) {
     return Container(
       padding: const EdgeInsets.all(20),
@@ -180,10 +203,16 @@ class ChallengesScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+          Text(title,
+              style: const TextStyle(
+                  color: AppColors.textSecondary, fontSize: 14)),
           RichText(
             text: TextSpan(
-              style: const TextStyle(fontFamily: 'RedHatDisplay', fontSize: 40, fontWeight: FontWeight.bold, color: AppColors.primaryRed),
+              style: const TextStyle(
+                  fontFamily: 'RedHatDisplay',
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryRed),
               children: [
                 TextSpan(text: amount),
                 TextSpan(text: cents, style: const TextStyle(fontSize: 24)),
@@ -220,35 +249,52 @@ class ChallengesScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryRed)),
+              Text(title,
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primaryRed)),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   // ignore: deprecated_member_use
                   color: AppColors.paidGreen.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Text(reward, style: const TextStyle(color: AppColors.paidGreen, fontWeight: FontWeight.bold)),
+                child: Text(reward,
+                    style: const TextStyle(
+                        color: AppColors.paidGreen,
+                        fontWeight: FontWeight.bold)),
               ),
             ],
           ),
           const SizedBox(height: 8),
-          Text(description, style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+          Text(description,
+              style: const TextStyle(
+                  color: AppColors.textSecondary, fontSize: 14)),
           const SizedBox(height: 16),
           if (isFullyCompleted)
-             const Row(
-                children: [
-                  Icon(Icons.check_circle, color: AppColors.primaryRed, size: 18),
-                  SizedBox(width: 8),
-                  Text('Completed', style: TextStyle(color: AppColors.primaryRed, fontWeight: FontWeight.bold)),
-                ],
-              )
+            const Row(
+              children: [
+                Icon(Icons.check_circle, color: AppColors.primaryRed, size: 18),
+                SizedBox(width: 8),
+                Text('Completed',
+                    style: TextStyle(
+                        color: AppColors.primaryRed,
+                        fontWeight: FontWeight.bold)),
+              ],
+            )
           else if (isCompleted)
             Row(
               children: [
-                const Icon(Icons.check_circle, color: AppColors.primaryRed, size: 18),
+                const Icon(Icons.check_circle,
+                    color: AppColors.primaryRed, size: 18),
                 const SizedBox(width: 8),
-                const Text('Completed', style: TextStyle(color: AppColors.primaryRed, fontWeight: FontWeight.bold)),
+                const Text('Completed',
+                    style: TextStyle(
+                        color: AppColors.primaryRed,
+                        fontWeight: FontWeight.bold)),
                 const Spacer(),
                 PrimaryButton(
                   text: 'Collect Reward',
@@ -289,7 +335,9 @@ class ChallengesScreen extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           child: Text(
                             '$progress/$total',
-                            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
                           ),
                         ),
                       ),

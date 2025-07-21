@@ -77,7 +77,7 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: BoxDecoration(color: AppColors.cardColor, borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(color: AppColors.cardColorsecondary, borderRadius: BorderRadius.circular(20)),
           child: const Row(
             children: [
               Icon(Icons.account_balance_wallet_outlined, size: 20, color: AppColors.textSecondary),
@@ -97,7 +97,7 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
           title: 'Overview',
           trailing: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(color: AppColors.cardColor, borderRadius: BorderRadius.circular(20)),
+            decoration: BoxDecoration(color: AppColors.cardColorsecondary, borderRadius: BorderRadius.circular(20)),
             child: const Row(
               children: [
                 Text('Today', style: TextStyle(color: Colors.white)),
@@ -146,7 +146,7 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
           return Chip(
             label: Text(filters[index]),
             labelStyle: const TextStyle(color: AppColors.textSecondary),
-            backgroundColor: AppColors.cardColor,
+            backgroundColor: AppColors.cardColorsecondary,
             side: BorderSide.none,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           );
@@ -176,7 +176,7 @@ class OverviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: AppColors.cardColor, borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: AppColors.cardColorsecondary, borderRadius: BorderRadius.circular(16)),
       child: Column(
         children: [
           Text(title, style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
@@ -197,7 +197,7 @@ class RedemptionListItem extends StatelessWidget {
     final isGold = redemption.type == PassType.Gold;
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: AppColors.cardColor, borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: AppColors.cardColorsecondary, borderRadius: BorderRadius.circular(16)),
       child: Row(
         children: [
           Expanded(
