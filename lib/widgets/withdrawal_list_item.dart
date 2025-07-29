@@ -68,7 +68,7 @@ class WithdrawalListItem extends StatelessWidget {
         text = 'Pending';
         break;
       case 'Failed':
-        badgeColor = AppColors.failedRed;
+        badgeColor = AppColors.primaryRed;
         text = 'Failed';
         icon = const Icon(Icons.refresh, color: Colors.white, size: 16);
         break;

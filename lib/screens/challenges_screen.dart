@@ -302,7 +302,7 @@ class ChallengesScreen extends StatelessWidget {
                   icon: const Icon(Icons.military_tech, size: 16),
                   backgroundColor: AppColors.paidGreen,
                   foregroundColor: Colors.black,
-                  borderRadius: 20,
+                  
                 ),
               ],
             )

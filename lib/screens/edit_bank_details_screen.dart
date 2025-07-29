@@ -46,6 +46,7 @@ class EditBankDetailsScreen extends StatelessWidget {
               label: 'Account Number',
               hint: 'XXXX - XXXX - XXXX - XXXX',
               keyboardType: TextInputType.number,
+              
             ),
             const SizedBox(height: 40),
             Row(

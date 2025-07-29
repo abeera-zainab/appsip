@@ -1,6 +1,8 @@
 import 'package:appsip/screens/invitation_screen.dart';
+import 'package:appsip/screens/profile_screen.dart';
 import 'package:appsip/screens/register_screen.dart';
 import 'package:appsip/screens/tell_us_about_yourself_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:appsip/screens/main_screen_shell.dart';
 
@@ -13,11 +15,13 @@ class AppColors {
   static const Color textSecondary = Color(0xFFB0B0B0);
   static const Color paidGreen = Color(0xFF34C759);
   static const Color pendingYellow = Color(0xFFD1A11E);
-  static const Color failedRed = Color(0xFFE53935);
+  static const Color failedRed = Color(0xFF2B47);
   static const Color bottomNavBackground = Color(0xFF1A1A1A);
    static const Color gradientStart = Color(0xFF2DE1C2);
   static const Color gradientEnd = Color(0xFF24A5D5);
   static const Color cardColorsecondary= Color.fromARGB(105, 75, 10, 10);
+    static const Color profileCardGradientStart = Color(0xFFa499f5);
+     static const Color profileCardGradientEnd = Color(0xFF8377e0);
 }
 
 void main() {
@@ -70,7 +74,8 @@ class MyApp extends StatelessWidget {
       home: 
      //const InvitationKeyScreen()
      // const MainScreenShell(),
-       const TellUsAboutYourselfScreen(),
+       //const TellUsAboutYourselfScreen(),
+       const ProfileScreen()
       
     );
   }

@@ -4,6 +4,8 @@ import 'package:appsip/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:appsip/screens/register_screen.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
+
 class RegisterBartenderScreen extends StatefulWidget {
   const RegisterBartenderScreen({super.key});
 
@@ -16,6 +18,11 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
   bool _isPasswordObscured = true;
   bool _isConfirmPasswordObscured = true;
   final TextEditingController _dateOfBirthController = TextEditingController();
+
+  // Define SVG asset paths
+  final String lockIconPath = 'assets/svg/lock.svg';
+  final String eyeIconPath = 'assets/svg/eyeopen.svg';
+  final String eyeOffIconPath = 'assets/svg/eyeclosed.svg';
 
   @override
   void dispose() {
@@ -58,7 +65,6 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 label: "Email Address *",
                 hint: "example@email.com",
                 prefixIcon: Icons.email_outlined,
-                keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 20),
 
@@ -67,7 +73,6 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 label: "Phone Number",
                 hint: "+1 (XXX) XXXX XXX",
                 prefixIcon: Icons.flag_circle_outlined,
-                keyboardType: TextInputType.phone,
               ),
               const SizedBox(height: 20),
 
@@ -80,14 +85,9 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 controller: _dateOfBirthController,
                 onTap: () async {
                   final pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime(2002),
-                    firstDate: DateTime(1950),
-                    lastDate: DateTime.now(),
-                  );
+                    context: context, initialDate: DateTime(2002), firstDate: DateTime(1950), lastDate: DateTime.now());
                   if (pickedDate != null) {
-                    final formattedDate = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
-                    _dateOfBirthController.text = formattedDate;
+                    _dateOfBirthController.text = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
                   }
                 },
               ),
@@ -96,9 +96,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 child: Text(
                   "Your age must be 21 or above",
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.error.withOpacity(0.9),
-                    fontSize: 12,
-                  ),
+                    color: Theme.of(context).colorScheme.error.withOpacity(0.9), fontSize: 12),
                 ),
               ),
               const SizedBox(height: 20),
@@ -107,9 +105,9 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
               _buildTextField(
                 label: "Password *",
                 hint: "Minimum 8 characters...",
-                prefixIcon: Icons.lock_outline,
+                prefixSvgPath: lockIconPath,
                 obscureText: _isPasswordObscured,
-                suffixIcon: _isPasswordObscured ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                suffixSvgPath: _isPasswordObscured ? eyeIconPath : eyeIconPath,
                 onSuffixIconTap: () {
                   setState(() {
                     _isPasswordObscured = !_isPasswordObscured;
@@ -122,9 +120,9 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
               _buildTextField(
                 label: "Confirm Password *",
                 hint: "Minimum 8 characters...",
-                prefixIcon: Icons.lock_outline,
+                prefixSvgPath: lockIconPath,
                 obscureText: _isConfirmPasswordObscured,
-                suffixIcon: _isConfirmPasswordObscured ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                suffixSvgPath: _isConfirmPasswordObscured ? eyeOffIconPath : eyeIconPath,
                 onSuffixIconTap: () {
                   setState(() {
                     _isConfirmPasswordObscured = !_isConfirmPasswordObscured;
@@ -138,11 +136,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 text: "Create Account",
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    print('Form is Valid');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const TellUsAboutYourselfScreen()),
-                    );
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const TellUsAboutYourselfScreen()));
                   }
                 },
                 isExpanded: true,
@@ -161,7 +155,9 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
     required String label,
     required String hint,
     IconData? prefixIcon,
+    String? prefixSvgPath,
     IconData? suffixIcon,
+    String? suffixSvgPath,
     bool obscureText = false,
     bool readOnly = false,
     VoidCallback? onTap,
@@ -169,6 +165,39 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
     TextInputType? keyboardType,
     TextEditingController? controller,
   }) {
+    Widget? buildIcon(String? svgPath, IconData? iconData, {bool isSuffix = false}) {
+      Widget? iconWidget;
+      // --- THE FIX IS HERE ---
+      // Changed from Colors.white to a neutral gray that is visible on most backgrounds.
+      // You can also use a more specific color like Colors.black or a dark theme color.
+      final Color iconColor = Colors.grey.shade600;
+
+     if (svgPath != null) {
+  iconWidget = SvgPicture.asset(
+    svgPath,
+    width: 22,
+    height: 22,
+    color: iconColor, // Directly use color parameter instead of ColorFilter
+  );
+} else if (iconData != null) {
+  iconWidget = Icon(iconData, color: iconColor);
+}
+
+      if (iconWidget == null) return null;
+
+      if (isSuffix) {
+        return IconButton(
+          icon: iconWidget,
+          onPressed: onSuffixIconTap,
+        );
+      }
+      
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
+        child: iconWidget,
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -186,14 +215,9 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
           decoration: InputDecoration(
             hintText: hint,
             filled: true,
-            fillColor: AppColors.cardColorsecondary, // Using cardColor from theme
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
-            suffixIcon: suffixIcon != null
-                ? IconButton(
-                    icon: Icon(suffixIcon),
-                    onPressed: onSuffixIconTap,
-                  )
-                : null,
+            fillColor: AppColors.cardColorsecondary,
+            prefixIcon: buildIcon(prefixSvgPath, prefixIcon),
+            suffixIcon: buildIcon(suffixSvgPath, suffixIcon, isSuffix: true),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
