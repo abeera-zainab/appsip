@@ -9,6 +9,17 @@ class EditBankDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // A reusable InputDecoration style to avoid repetition
+    final inputDecoration = InputDecoration(
+      filled: true,
+      fillColor: AppColors.cardColorsecondary, // The requested color
+      border: OutlineInputBorder( // A modern rounded border
+        borderRadius: BorderRadius.circular(12.0),
+        borderSide: BorderSide.none, // No visible border line
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Bank Details'),
@@ -26,9 +37,12 @@ class EditBankDetailsScreen extends StatelessWidget {
           children: [
             CustomTextInputField(
               label: 'Select Bank',
+              // We pass the DropdownButtonFormField to the 'field' property
               field: DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.account_balance, color: AppColors.textSecondary),
+                // We merge our reusable style with the specific icons for this field
+                decoration: inputDecoration.copyWith(
+                  prefixIcon: const Icon(Icons.account_balance, color: AppColors.textSecondary),
+                  hintText: 'Select Your Bank--',
                 ),
                 hint: const Text('Select Your Bank--'),
                 icon: const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
@@ -40,13 +54,25 @@ class EditBankDetailsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const CustomTextInputField(label: 'Account Holder Name', hint: 'Type your full name here...'),
+            // We now pass a fully decorated TextFormField to the custom widget
+            CustomTextInputField(
+              label: 'Account Holder Name',
+              field: TextFormField(
+                decoration: inputDecoration.copyWith(
+                  hintText: 'Type your full name here...',
+                ),
+              ),
+            ),
             const SizedBox(height: 20),
-            const CustomTextInputField(
+            // We do the same for the account number field
+            CustomTextInputField(
               label: 'Account Number',
-              hint: 'XXXX - XXXX - XXXX - XXXX',
-              keyboardType: TextInputType.number,
-              
+              field: TextFormField(
+                keyboardType: TextInputType.number,
+                decoration: inputDecoration.copyWith(
+                  hintText: 'XXXX - XXXX - XXXX - XXXX',
+                ),
+              ),
             ),
             const SizedBox(height: 40),
             Row(

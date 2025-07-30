@@ -22,6 +22,25 @@ class AppColors {
   static const Color cardColorsecondary= Color.fromARGB(105, 75, 10, 10);
     static const Color profileCardGradientStart = Color(0xFFa499f5);
      static const Color profileCardGradientEnd = Color(0xFF8377e0);
+
+  static final List<Color> profileBackgrounds = [
+    Colors.transparent, // Placeholder for the color picker icon at index 0
+    const Color(0xFFFF4848),
+    const Color(0xFFFFBF00),
+    const Color(0xFF46C85C),
+    const Color(0xFF00EE87),
+    const Color(0xFF00E1FF),
+    const Color(0xFF489BFF),
+    const Color(0xFF5548FF),
+    const Color(0xFFC532C5),
+    const Color(0xFFFF5F8A),
+    const Color(0xFFCA0003),
+    const Color(0xFF5300B1),
+    const Color(0xFF00E5BF),
+    const Color(0xFF32E500),
+    const Color(0xFF923F00),
+  ];
+   
 }
 
 void main() {
@@ -74,8 +93,8 @@ class MyApp extends StatelessWidget {
       home: 
      //const InvitationKeyScreen()
      // const MainScreenShell(),
-       //const TellUsAboutYourselfScreen(),
-       const ProfileScreen()
+       const TellUsAboutYourselfScreen(),
+       //const ProfileScreen()
       
     );
   }
