@@ -1,9 +1,14 @@
+import 'package:appsip/screens/change_password_screen.dart';
 import 'package:appsip/screens/edit_bank_details_screen.dart';
+import 'package:appsip/screens/edit_profile_screen.dart';
+import 'package:appsip/screens/help-and-support-screen.dart';
+import 'package:appsip/screens/logout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:appsip/main.dart'; // Imports AppColors
 import 'package:appsip/widgets/profile_header_card.dart';
 import 'package:appsip/widgets/profile_menu_item.dart';
+
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -39,12 +44,24 @@ class ProfileScreen extends StatelessWidget {
                 ProfileMenuItem(
                   title: "Edit Profile",
                   svgIconPath: 'assets/svg/edit.svg', 
-                  onTap: () { /* Handle Edit Profile tap */ },
+                  onTap: () {   
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EditProfileScreen(),
+                      ),
+                    ); }
                 ),
                 ProfileMenuItem(
                   title: "Change Password",
                   svgIconPath: 'assets/svg/lock.svg', 
-                  onTap: () { /* Handle Change Password tap */ },
+                  onTap: () { /* Handle Change Password tap */
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChangePasswordScreen(),
+                      ),
+                    ); },
                 ),
                 ProfileMenuItem(
                   title: "Edit Bank Details",
@@ -61,7 +78,13 @@ class ProfileScreen extends StatelessWidget {
                 ProfileMenuItem(
                   title: "Help & Support",
                   svgIconPath: 'assets/svg/headset-help.svg', 
-                  onTap: () { /* Handle Help & Support tap */ },
+                  onTap: () { /* Handle Help & Support tap */
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HelpAndSupportScreen(),
+                      ),
+                    ); },
                 ),
                 ProfileMenuItem(
                   title: "Terms & Privacy Policies",
@@ -77,7 +100,13 @@ class ProfileScreen extends StatelessWidget {
                   title: "Logout",
                   svgIconPath: 'assets/svg/log-out.svg',
                   customColor: AppColors.primaryRed,
-                  onTap: () { /* Handle Logout tap */ },
+                  onTap: () { /* Handle Logout tap */ 
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LogoutPage(),
+                      ),
+                    ); },
                 ),
               ],
             ),
@@ -133,7 +162,7 @@ class ProfileScreen extends StatelessWidget {
                 style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
             ],

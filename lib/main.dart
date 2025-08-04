@@ -1,10 +1,6 @@
-import 'package:appsip/screens/invitation_screen.dart';
 import 'package:appsip/screens/profile_screen.dart';
-import 'package:appsip/screens/register_screen.dart';
-import 'package:appsip/screens/tell_us_about_yourself_screen.dart';
 
 import 'package:flutter/material.dart';
-import 'package:appsip/screens/main_screen_shell.dart';
 
 // --- Define App Colors ---
 class AppColors {
@@ -15,7 +11,7 @@ class AppColors {
   static const Color textSecondary = Color(0xFFB0B0B0);
   static const Color paidGreen = Color(0xFF34C759);
   static const Color pendingYellow = Color(0xFFD1A11E);
-  static const Color failedRed = Color(0xFF2B47);
+  static const Color gradientEndRed= Color(0xFFD93D5A);
   static const Color bottomNavBackground = Color(0xFF1A1A1A);
    static const Color gradientStart = Color(0xFF2DE1C2);
   static const Color gradientEnd = Color(0xFF24A5D5);
@@ -93,8 +89,8 @@ class MyApp extends StatelessWidget {
       home: 
      //const InvitationKeyScreen()
      // const MainScreenShell(),
-       const TellUsAboutYourselfScreen(),
-       //const ProfileScreen()
+       //const TellUsAboutYourselfScreen(),
+       const ProfileScreen()
       
     );
   }

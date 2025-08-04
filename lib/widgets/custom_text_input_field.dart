@@ -13,7 +13,7 @@ class CustomTextInputField extends StatelessWidget {
     this.hint = '',
     this.keyboardType,
     this.controller,
-    this.field,
+    this.field, required fillColor, required bool filled,
   });
 
   @override
@@ -21,7 +21,7 @@ class CustomTextInputField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        Text(label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal,fontFamily: 'RedHatDisplay')),
         const SizedBox(height: 12),
         field ??
             TextField(
@@ -29,6 +29,7 @@ class CustomTextInputField extends StatelessWidget {
               keyboardType: keyboardType,
               decoration: InputDecoration(
                 hintText: hint,
+                
               ),
             ),
       ],

@@ -1,3 +1,4 @@
+import 'package:appsip/main.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_text_input_field.dart';
 import '../widgets/custom_dropdown_field.dart';
@@ -46,6 +47,8 @@ class BankDetailsScreen extends StatelessWidget {
               const CustomTextInputField(
                 label: 'Account Holder Name',
                 hint: 'Type your full name here...',
+                filled:true,
+                fillColor: AppColors.cardColorsecondary,
               ),
               const SizedBox(height: 24),
 
@@ -54,6 +57,8 @@ class BankDetailsScreen extends StatelessWidget {
                 label: 'Account Number',
                 hint: 'XXXX - XXXX - XXXX - XXXX',
                 keyboardType: TextInputType.number,
+                filled: true,
+                fillColor: AppColors.cardColorsecondary,
               ),
 
               // This Spacer pushes the button to the bottom

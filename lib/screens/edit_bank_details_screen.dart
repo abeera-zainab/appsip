@@ -51,7 +51,7 @@ class EditBankDetailsScreen extends StatelessWidget {
                     .map((bank) => DropdownMenuItem(value: bank, child: Text(bank)))
                     .toList(),
                 onChanged: (value) {},
-              ),
+              ), fillColor: AppColors.cardColorsecondary, filled: true,
             ),
             const SizedBox(height: 20),
             // We now pass a fully decorated TextFormField to the custom widget
@@ -61,7 +61,7 @@ class EditBankDetailsScreen extends StatelessWidget {
                 decoration: inputDecoration.copyWith(
                   hintText: 'Type your full name here...',
                 ),
-              ),
+              ), fillColor: AppColors.cardColorsecondary, filled: true,
             ),
             const SizedBox(height: 20),
             // We do the same for the account number field
@@ -71,8 +71,10 @@ class EditBankDetailsScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 decoration: inputDecoration.copyWith(
                   hintText: 'XXXX - XXXX - XXXX - XXXX',
+                  filled: true,
+                  fillColor: AppColors.cardColorsecondary
                 ),
-              ),
+              ), fillColor: AppColors.cardColorsecondary, filled: true,
             ),
             const SizedBox(height: 40),
             Row(
