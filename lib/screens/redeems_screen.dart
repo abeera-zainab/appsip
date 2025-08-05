@@ -128,7 +128,7 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
         hintStyle: const TextStyle(color: AppColors.textSecondary),
         prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary),
         filled: true,
-        fillColor: AppColors.cardColor,
+        fillColor: AppColors.cardColorsecondary,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
         contentPadding: const EdgeInsets.symmetric(vertical: 16),
       ),

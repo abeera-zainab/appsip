@@ -1,3 +1,4 @@
+import 'package:appsip/screens/submit-issue-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:appsip/main.dart';
@@ -281,6 +282,11 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                   ),
                   onPressed: () {
                     // Handle submit action
+                     Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const SubmitIssueScreen(),
+                        ),
+                      );
                   },
                   child: const Text(
                     'Submit Issue',

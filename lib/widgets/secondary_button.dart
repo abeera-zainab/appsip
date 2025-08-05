@@ -1,3 +1,4 @@
+// In lib/widgets/secondary_button.dart
 import 'package:appsip/main.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +6,8 @@ class SecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final bool isExpanded;
-  final Color? color;
+  final Color? backgroundColor; 
+  final Color? foregroundColor; 
   final double borderRadius;
 
   const SecondaryButton({
@@ -13,20 +15,29 @@ class SecondaryButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.isExpanded = false,
-    this.color,
-    this.borderRadius = 30.0,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.borderRadius = 12.0, // Adjusted to match design
   });
 
   @override
   Widget build(BuildContext context) {
-    final button = OutlinedButton(
+    // Switched to ElevatedButton for easier background color styling
+    final button = ElevatedButton(
       onPressed: onPressed,
-      style: OutlinedButton.styleFrom(
+      style: ElevatedButton.styleFrom(
+        elevation: 0, // No shadow for a flat design
+        backgroundColor: backgroundColor ?? AppColors.cardColorsecondary, // Use provided color or default
+        foregroundColor: foregroundColor ?? AppColors.primaryRed, // Use provided text color or default
         padding: const EdgeInsets.symmetric(vertical: 16),
-        side: BorderSide(color: color ?? AppColors.primaryRed),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+        ),
       ),
-      child: Text(text, style: TextStyle(color: color ?? AppColors.primaryRed, fontWeight: FontWeight.bold)),
+      child: Text(
+        text,
+        style: const TextStyle(fontWeight: FontWeight.normal, fontFamily: 'RedHatDisplay'),
+      ),
     );
 
     if (isExpanded) {

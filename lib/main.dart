@@ -1,3 +1,4 @@
+import 'package:appsip/screens/main_screen_shell.dart';
 import 'package:appsip/screens/profile_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ class AppColors {
    static const Color gradientStart = Color(0xFF2DE1C2);
   static const Color gradientEnd = Color(0xFF24A5D5);
   static const Color cardColorsecondary= Color.fromARGB(105, 75, 10, 10);
+  static const Color black=Color(0x00000080); 
+   static const Color gradientStartRed = Color(0xFFF53C5E);
     static const Color profileCardGradientStart = Color(0xFFa499f5);
      static const Color profileCardGradientEnd = Color(0xFF8377e0);
 
@@ -49,13 +52,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Earnings App',
+      title: 'Sip Skip',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: AppColors.background,
         primaryColor: AppColors.primaryRed,
-        // Set the font family name directly from pubspec.yaml
+        
         fontFamily: 'RedHatDisplay',
         textTheme: Theme.of(context).textTheme.apply(
               fontFamily: 'RedHatDisplay',
@@ -88,9 +91,9 @@ class MyApp extends StatelessWidget {
       ),
       home: 
      //const InvitationKeyScreen()
-     // const MainScreenShell(),
+      const MainScreenShell(),
        //const TellUsAboutYourselfScreen(),
-       const ProfileScreen()
+       //const ProfileScreen()
       
     );
   }

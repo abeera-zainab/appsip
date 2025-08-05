@@ -7,6 +7,7 @@ class SubmitIssueScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SuccessScreenWidget(
+      
       title: 'Issue Submitted Successfully!',
       description: 'Thanks for submitting, our team will have a review and get back to you very soon. ',
     );

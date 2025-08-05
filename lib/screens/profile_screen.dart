@@ -3,6 +3,8 @@ import 'package:appsip/screens/edit_bank_details_screen.dart';
 import 'package:appsip/screens/edit_profile_screen.dart';
 import 'package:appsip/screens/help-and-support-screen.dart';
 import 'package:appsip/screens/logout_screen.dart';
+import 'package:appsip/screens/profile_swap.dart';
+import 'package:appsip/screens/terms-and-privacy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:appsip/main.dart'; // Imports AppColors
@@ -89,12 +91,24 @@ class ProfileScreen extends StatelessWidget {
                 ProfileMenuItem(
                   title: "Terms & Privacy Policies",
                   svgIconPath: 'assets/svg/page-flip.svg',
-                  onTap: () { /* Handle T&C tap */ },
+                  onTap: () { /* Handle T&C tap */
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TermsAndPrivacyScreen(),
+                      ),
+                    ); },
                 ),
                 ProfileMenuItem(
                   title: "Switch to Customer Profile",
                   svgIconPath: 'assets/svg/coins-swap.svg',
-                  onTap: () { /* Handle Switch Profile tap */ },
+                  onTap: () { /* Handle Switch Profile tap */ 
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SwitchProfileScreen(),
+                      ),
+                    ); },
                 ),
                 ProfileMenuItem(
                   title: "Logout",

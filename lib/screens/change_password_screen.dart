@@ -189,7 +189,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               label: const Text(
                 'Cancel',
                 style: TextStyle(
-                    color: AppColors.primaryRed,
+                    color: AppColors.gradientEndRed,
                     fontWeight: FontWeight.normal,
                     fontFamily: 'RedHatDisplay'),
               ),

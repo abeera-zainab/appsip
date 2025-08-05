@@ -49,7 +49,7 @@ class PrimaryButton extends StatelessWidget {
   /// This ensures backward compatibility for all other screens.
   Widget _buildStandardButton() {
     final style = ElevatedButton.styleFrom(
-      backgroundColor: backgroundColor ?? AppColors.primaryRed,
+      backgroundColor: backgroundColor ?? AppColors.gradientEndRed,
       foregroundColor: foregroundColor ?? Colors.white,
       padding: padding ?? const EdgeInsets.symmetric(vertical: 24),
       shape: RoundedRectangleBorder(

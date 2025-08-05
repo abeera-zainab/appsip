@@ -56,7 +56,7 @@ class SuccessScreenWidget extends StatelessWidget {
                     fontWeight: FontWeight.normal
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(height: 10),
               ],
             ],
           ),

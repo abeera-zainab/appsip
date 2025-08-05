@@ -27,7 +27,7 @@ class ProfileHeaderCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 24),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
         // The SweepGradient creates the sunburst effect
@@ -38,18 +38,17 @@ class ProfileHeaderCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.all(4), // This creates the white border
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-            ),
-            child: CircleAvatar(
-              radius: 45,
-              backgroundImage: AssetImage(avatarImagePath),
+          // Simple image without any circular shape or border
+          ClipRRect(
+            borderRadius: BorderRadius.circular(72), // Square shape
+            child: Image.asset(
+              avatarImagePath,
+              width: 84,
+              height: 84,
+              fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           Text(
             name,
             style: const TextStyle(

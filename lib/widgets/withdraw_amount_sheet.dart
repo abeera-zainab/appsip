@@ -1,9 +1,8 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:appsip/main.dart';
 import 'dart:async';
 import 'package:appsip/widgets/primary_button.dart';
+import 'package:flutter_svg/svg.dart';
 
 class WithdrawAmountSheet extends StatefulWidget {
   const WithdrawAmountSheet({super.key});
@@ -19,31 +18,6 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
   void dispose() {
     _amountController.dispose();
     super.dispose();
-  }
-
-  void _onKeyPressed(String value) {
-    if (value == 'DEL') {
-      String currentText = _amountController.text.replaceAll('.', '');
-      if (currentText.length > 1) {
-        currentText = currentText.substring(0, currentText.length - 1);
-      } else {
-        currentText = '0';
-      }
-      double numericValue = double.parse(currentText) / 100;
-      _amountController.text = numericValue.toStringAsFixed(2);
-    } else if (value == '+*#') {
-      return;
-    } else {
-      String currentText = _amountController.text.replaceAll('.', '');
-      if (currentText == '0') {
-        currentText = value;
-      } else if (currentText.length < 9) {
-        currentText += value;
-      }
-      double numericValue = double.parse(currentText) / 100;
-      _amountController.text = numericValue.toStringAsFixed(2);
-    }
-    setState(() {});
   }
 
   void _showSuccessAndPop() {
@@ -87,8 +61,6 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
             const SizedBox(height: 24),
             _buildActionButtons(),
             const SizedBox(height: 24),
-            _buildNumericKeypad(),
-            const SizedBox(height: 10),
           ],
         ),
       ),
@@ -103,9 +75,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
         const SizedBox(height: 8),
         TextField(
           controller: _amountController,
-          readOnly: true,
-          showCursor: true,
-          cursorColor: AppColors.primaryRed,
+          keyboardType: TextInputType.numberWithOptions(decimal: true),
           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
           decoration: InputDecoration(
             prefixIcon: const Padding(
@@ -185,53 +155,12 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
         const SizedBox(width: 16),
         Expanded(
           child: PrimaryButton(
-            text: 'Withdraw Ammount',
+            text: 'Withdraw Amount',
             onPressed: _showSuccessAndPop,
             borderRadius: 16,
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildNumericKeypad() {
-    final keys = [
-      {'num': '1', 'letters': ''}, {'num': '2', 'letters': 'ABC'}, {'num': '3', 'letters': 'DEF'},
-      {'num': '4', 'letters': 'GHI'}, {'num': '5', 'letters': 'JKL'}, {'num': '6', 'letters': 'MNO'},
-      {'num': '7', 'letters': 'PQRS'}, {'num': '8', 'letters': 'TUV'}, {'num': '9', 'letters': 'WXYZ'},
-      {'num': '+*#', 'letters': ''}, {'num': '0', 'letters': ''}, {'num': 'DEL', 'letters': ''},
-    ];
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: 1.5,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-      ),
-      itemCount: keys.length,
-      itemBuilder: (context, index) {
-        final key = keys[index];
-        return InkWell(
-          onTap: () => _onKeyPressed(key['num']!),
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(color: const Color(0xFF2C2C2E), borderRadius: BorderRadius.circular(16)),
-            child: key['num'] == 'DEL'
-                ? const Icon(Icons.backspace_outlined, color: AppColors.textPrimary)
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(key['num']!, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
-                      if (key['letters']!.isNotEmpty)
-                        Text(key['letters']!, style: const TextStyle(fontSize: 10, color: AppColors.textSecondary)),
-                    ],
-                  ),
-          ),
-        );
-      },
     );
   }
 }
@@ -264,17 +193,10 @@ class SuccessCheckmark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 120,
-        height: 120,
-        decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-                colors: [Color(0xFF66BB6A), Color(0xFF388E3C)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-            )
-        ),
-        child: const Icon(Icons.check_rounded, color: Colors.white, size: 80)
+    
+        child: SvgPicture.asset('assets/images/Check.png',
+        width: 160,
+        height: 160,)
     );
   }
 }

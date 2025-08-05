@@ -3,6 +3,7 @@ import 'package:appsip/main.dart';
 import 'package:appsip/widgets/custom_text_input_field.dart';
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/secondary_button.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class EditBankDetailsScreen extends StatelessWidget {
   const EditBankDetailsScreen({super.key});
@@ -41,11 +42,11 @@ class EditBankDetailsScreen extends StatelessWidget {
               field: DropdownButtonFormField<String>(
                 // We merge our reusable style with the specific icons for this field
                 decoration: inputDecoration.copyWith(
-                  prefixIcon: const Icon(Icons.account_balance, color: AppColors.textSecondary),
+                  prefixIcon: SvgPicture.asset('assets/svg/bank.svg'),
                   hintText: 'Select Your Bank--',
                 ),
                 hint: const Text('Select Your Bank--'),
-                icon: const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
+                icon:  SvgPicture.asset('assets/svg/vector.svg'),
                 dropdownColor: AppColors.cardColor,
                 items: ['Bank of America', 'Chase', 'Wells Fargo', 'Citibank']
                     .map((bank) => DropdownMenuItem(value: bank, child: Text(bank)))
@@ -71,8 +72,7 @@ class EditBankDetailsScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 decoration: inputDecoration.copyWith(
                   hintText: 'XXXX - XXXX - XXXX - XXXX',
-                  filled: true,
-                  fillColor: AppColors.cardColorsecondary
+                 
                 ),
               ), fillColor: AppColors.cardColorsecondary, filled: true,
             ),
@@ -84,7 +84,7 @@ class EditBankDetailsScreen extends StatelessWidget {
                     text: 'Cancel',
                     onPressed: () => Navigator.of(context).pop(),
                     // ignore: deprecated_member_use
-                    color: AppColors.textSecondary.withOpacity(0.5),
+                   
                   ),
                 ),
                 const SizedBox(width: 16),
