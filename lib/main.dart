@@ -22,6 +22,7 @@ class AppColors {
     static const Color profileCardGradientStart = Color(0xFFa499f5);
      static const Color profileCardGradientEnd = Color(0xFF8377e0);
      static const Color divider = Color(0xFF3A3A3C);
+      
   
  
   static const Color switchActive = Color(0xFFE94D6A);
