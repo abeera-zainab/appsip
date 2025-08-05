@@ -3,6 +3,7 @@ import 'package:appsip/screens/edit_bank_details_screen.dart';
 import 'package:appsip/screens/edit_profile_screen.dart';
 import 'package:appsip/screens/help-and-support-screen.dart';
 import 'package:appsip/screens/logout_screen.dart';
+import 'package:appsip/screens/notifications_screen.dart';
 import 'package:appsip/screens/profile_swap.dart';
 import 'package:appsip/screens/terms-and-privacy_screen.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,13 @@ class ProfileScreen extends StatelessWidget {
                   title: "Notifications",
                   svgIconPath: 'assets/svg/bell.svg',
                   trailingText: '(2)', 
-                  onTap: () { /* Handle Notifications tap */ },
+                  onTap: () { /* Handle Notifications tap */
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NotificationsScreen(),
+                      ),
+                    ); },
                 ),
                 ProfileMenuItem(
                   title: "Edit Profile",

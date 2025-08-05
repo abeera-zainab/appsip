@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:appsip/main.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PhotoUploadWidget extends StatelessWidget {
   final File? selectedImage;
@@ -55,17 +56,16 @@ class _UploadPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.image_outlined,
-            color: AppColors.primaryRed,
-            size: 50,
+          SvgPicture.asset(
+            'assets/svg/media-image-plus.svg',
+            
           ),
-          SizedBox(height: 15),
-          Text(
+          const SizedBox(height: 15),
+          const Text(
             'Upload Your Photo',
             style: TextStyle(
               color: AppColors.primaryRed,

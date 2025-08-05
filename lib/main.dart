@@ -16,11 +16,16 @@ class AppColors {
   static const Color bottomNavBackground = Color(0xFF1A1A1A);
    static const Color gradientStart = Color(0xFF2DE1C2);
   static const Color gradientEnd = Color(0xFF24A5D5);
-  static const Color cardColorsecondary= Color.fromARGB(105, 75, 10, 10);
+  static const Color cardColorsecondary= Color(0xFF261215);
   static const Color black=Color(0x00000080); 
    static const Color gradientStartRed = Color(0xFFF53C5E);
     static const Color profileCardGradientStart = Color(0xFFa499f5);
      static const Color profileCardGradientEnd = Color(0xFF8377e0);
+     static const Color divider = Color(0xFF3A3A3C);
+  
+ 
+  static const Color switchActive = Color(0xFFE94D6A);
+  static const Color switchInactive = Color(0xFF4A4A4A);
 
   static final List<Color> profileBackgrounds = [
     Colors.transparent, // Placeholder for the color picker icon at index 0
