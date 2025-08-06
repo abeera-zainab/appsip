@@ -23,16 +23,15 @@ class ProfileMenuItem extends StatelessWidget {
     final Color color = customColor ?? AppColors.textPrimary;
 
     return Padding(
-      // --- CHANGE 1: Increased bottom padding for more space BETWEEN items. ---
-      padding: const EdgeInsets.only(bottom: 8.0), // Was 8.0
+     
+      padding: const EdgeInsets.only(bottom: 4.0), // Was 8.0
       child: Material(
         color: AppColors.cardColorsecondary,
-        // --- CHANGE 2: Increased border radius for a smoother look on a taller item. ---
+        
         borderRadius: BorderRadius.circular(16), // Was 16
         child: InkWell(
           borderRadius: BorderRadius.circular(16), // Was 16
           onTap: onTap,
-          // --- CHANGE 3 (PRIMARY): Added vertical padding here to make the item TALLER. ---
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Row(
