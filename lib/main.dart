@@ -1,3 +1,4 @@
+import 'package:appsip/screens/invitation_screen.dart';
 import 'package:appsip/screens/main_screen_shell.dart';
 import 'package:appsip/screens/profile_screen.dart';
 
@@ -96,8 +97,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: 
-     //const InvitationKeyScreen()
-      const MainScreenShell(),
+      const InvitationKeyScreen()
+      //const MainScreenShell(),
        //const TellUsAboutYourselfScreen(),
        //const ProfileScreen()
       

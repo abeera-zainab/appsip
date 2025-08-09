@@ -1,8 +1,8 @@
-import 'package:appsip/main.dart';
+import 'package:flutter/material.dart';
 import 'package:appsip/screens/tell_us_about_yourself_screen.dart' show TellUsAboutYourselfScreen;
 import 'package:appsip/widgets/primary_button.dart';
-import 'package:flutter/material.dart';
-import 'package:appsip/screens/register_screen.dart';
+
+import 'package:appsip/main.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -167,21 +167,18 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
   }) {
     Widget? buildIcon(String? svgPath, IconData? iconData, {bool isSuffix = false}) {
       Widget? iconWidget;
-      // --- THE FIX IS HERE ---
-      // Changed from Colors.white to a neutral gray that is visible on most backgrounds.
-      // You can also use a more specific color like Colors.black or a dark theme color.
       final Color iconColor = Colors.grey.shade600;
 
      if (svgPath != null) {
-  iconWidget = SvgPicture.asset(
-    svgPath,
-    width: 22,
-    height: 22,
-    color: iconColor, // Directly use color parameter instead of ColorFilter
-  );
-} else if (iconData != null) {
-  iconWidget = Icon(iconData, color: iconColor);
-}
+        iconWidget = SvgPicture.asset(
+          svgPath,
+          width: 22,
+          height: 22,
+          color: iconColor,
+        );
+      } else if (iconData != null) {
+        iconWidget = Icon(iconData, color: iconColor);
+      }
 
       if (iconWidget == null) return null;
 
@@ -201,10 +198,27 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+        
+        RichText(
+          text: TextSpan(
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+              color: Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black87,
+            ),
+            children: <TextSpan>[
+           
+              TextSpan(text: label.split(' *')[0]),
+              // This conditionally adds the asterisk in red if it exists
+              if (label.contains(' *'))
+                const TextSpan(
+                  text: ' *',
+                  style: TextStyle(color: AppColors.primaryRed), 
+                ),
+            ],
+          ),
         ),
+        // MODIFICATION END
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,
