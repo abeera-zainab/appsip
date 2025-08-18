@@ -17,7 +17,7 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+     
       appBar: AppBar(
         leading: const BackButton(color: AppColors.textPrimary),
         title: const Text(

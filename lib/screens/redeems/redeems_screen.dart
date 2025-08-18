@@ -34,8 +34,7 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
+       
         toolbarHeight: 80,
         title: _buildHeader(),
       ),

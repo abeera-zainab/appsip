@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'package:appsip/screens/edit_bank.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 
 // Import your widgets and colors
@@ -47,12 +48,11 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      
       appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
+      
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+          icon: SvgPicture.asset('assets/svg/arrow_back.svg'),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(

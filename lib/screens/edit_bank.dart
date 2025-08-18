@@ -1,9 +1,10 @@
 import 'package:appsip/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/custom_text_input_field.dart';
 import '../widgets/custom_dropdown_field.dart';
 import '../widgets/submit_button.dart';
-import 'success_screen.dart';
+import 'redeems/success_screen.dart';
 
 class BankDetailsScreen extends StatelessWidget {
   const BankDetailsScreen({Key? key}) : super(key: key);
@@ -12,10 +13,9 @@ class BankDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+     
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: SvgPicture.asset('assets/svg/arrow_back.svg'),
           onPressed: () {
             // This will pop the screen and go back to the previous one
             // e.g., "Tell us about yourself" screen

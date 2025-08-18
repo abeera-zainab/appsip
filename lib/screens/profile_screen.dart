@@ -1,9 +1,9 @@
-import 'package:appsip/screens/change_password_screen.dart';
-import 'package:appsip/screens/edit_bank_details_screen.dart';
-import 'package:appsip/screens/edit_profile_screen.dart';
+import 'package:appsip/screens/password/change_password_screen.dart';
+import 'package:appsip/screens/earnings/edit_bank_details_screen.dart';
+import 'package:appsip/screens/edit-profile/edit_profile_screen.dart';
 import 'package:appsip/screens/help-and-support-screen.dart';
 import 'package:appsip/screens/logout_screen.dart';
-import 'package:appsip/screens/notifications_screen.dart';
+import 'package:appsip/screens/notifications/notifications_screen.dart';
 import 'package:appsip/screens/profile_swap.dart';
 import 'package:appsip/screens/terms-and-privacy_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

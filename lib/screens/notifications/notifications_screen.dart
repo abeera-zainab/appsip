@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 // Assuming these files exist and are correctly set up
 import 'package:appsip/main.dart';
-import 'package:appsip/screens/notifications_settings_screen.dart';
+import 'package:appsip/screens/notifications/notifications_settings_screen.dart';
 
 // --- Data Model for a Notification (Updated) ---
 class NotificationModel {

@@ -5,10 +5,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 // Assuming these files exist in your project structure
-import '../main.dart';
-import '../widgets/color_grid.dart';
-import '../widgets/photo_upload_widget.dart';
-import 'delete_account_screen.dart';
+import '../../main.dart';
+import '../../widgets/color_grid.dart';
+import '../../widgets/photo_upload_widget.dart';
+import '../delete-account/delete_account_screen.dart';
 import 'profile_updated_screen.dart';
 
 class EditProfileScreen extends StatefulWidget {

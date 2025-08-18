@@ -7,7 +7,7 @@ class SwitchProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      
       body: Align(
         alignment: Alignment.bottomCenter,
         child: _SwitchProfileContent(), // Position content at bottom
@@ -25,7 +25,7 @@ class _SwitchProfileContent extends StatelessWidget {
       width: double.infinity, // Take full width
       padding: const EdgeInsets.fromLTRB(24, 40, 24, 40), // Increased top padding
       decoration: const BoxDecoration(
-        color: AppColors.background,
+       
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(28.0),
           topRight: Radius.circular(28.0),

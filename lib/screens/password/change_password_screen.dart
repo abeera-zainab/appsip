@@ -1,4 +1,4 @@
-import 'package:appsip/screens/change_password_updatescreen.dart';
+import 'package:appsip/screens/password/change_password_updatescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:appsip/main.dart';
@@ -33,10 +33,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+
       appBar: AppBar(
-        backgroundColor:AppColors.background,
-        elevation: 0,
+        
         leading: IconButton(
           icon: SvgPicture.asset('assets/svg/arrow_back.svg'),
           onPressed: () => Navigator.of(context).pop(),

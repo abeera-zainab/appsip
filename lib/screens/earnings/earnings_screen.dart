@@ -4,7 +4,7 @@ import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/secondary_button.dart';
 import 'package:appsip/widgets/section_header.dart';
 import 'package:appsip/widgets/withdrawal_list_item.dart';
-import 'package:appsip/screens/edit_bank_details_screen.dart';
+import 'package:appsip/screens/earnings/edit_bank_details_screen.dart';
 import 'package:appsip/widgets/withdraw_amount_sheet.dart';
 
 class EarningsScreen extends StatelessWidget {
@@ -23,8 +23,7 @@ class EarningsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
+      
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

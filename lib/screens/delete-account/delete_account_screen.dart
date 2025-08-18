@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Assuming your AppColors and next screen are located here
 import 'package:appsip/main.dart'; 
-import 'package:appsip/screens/account_deletion_scheduled.dart';
+import 'package:appsip/screens/delete-account/account_deletion_scheduled.dart';
 
 class DeleteAccountScreen extends StatefulWidget {
   const DeleteAccountScreen({super.key});
@@ -29,7 +29,6 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
     );
 
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),

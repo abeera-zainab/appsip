@@ -22,10 +22,9 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+    
       appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
+       
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
