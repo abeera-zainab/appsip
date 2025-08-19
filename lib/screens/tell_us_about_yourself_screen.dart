@@ -11,8 +11,6 @@ import 'package:appsip/main.dart';
 import 'package:appsip/widgets/photo_upload_widget.dart';
 import 'package:appsip/widgets/color_grid.dart';
 
-
-
 class TellUsAboutYourselfScreen extends StatefulWidget {
   const TellUsAboutYourselfScreen({super.key});
 
@@ -34,7 +32,6 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
     }
   }
 
-  // The navigation logic is kept separate for clarity
   void _navigateToNextScreen() {
     print('Next button pressed!');
     Navigator.push(
@@ -48,9 +45,7 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
-      
         leading: IconButton(
           icon: SvgPicture.asset('assets/svg/arrow_back.svg'),
           onPressed: () => Navigator.of(context).pop(),
@@ -73,9 +68,19 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
                 onTap: _pickImage,
               ),
               const SizedBox(height: 40),
-              const Text(
-                'Select Profile Background Color *',
-                style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
+              RichText(
+                text: const TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Select Profile Background Color ',
+                      style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
+                    ),
+                    TextSpan(
+                      text: '*',
+                      style: TextStyle(color: Colors.red, fontSize: 16),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 20),
               ColorGrid(
@@ -90,17 +95,14 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
           ),
         ),
       ),
-      // CHANGED: Calling the local helper method instead of the external widget
       bottomNavigationBar: _buildNextButton(),
     );
   }
 
-  // ADDED: Helper method for the button is back inside the screen's state class
   Widget _buildNextButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
       child: ElevatedButton(
-        // The onPressed now calls the navigation method directly
         onPressed: _navigateToNextScreen,
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.zero,
@@ -111,7 +113,7 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
         child: Ink(
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [AppColors.primaryRed, AppColors.primaryRed],
+              colors: [AppColors.gradientStartRed, AppColors.gradientEndRed],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),
@@ -120,19 +122,20 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
           child: Container(
             alignment: Alignment.center,
             height: 55,
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                SvgPicture.asset('assets/svg/right-gesture.svg'),
+                const SizedBox(width: 8),
+                const Text(
                   'Next',
                   style: TextStyle(
                     color: AppColors.textPrimary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontFamily: 'RedHatDisplay',
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(width: 8),
-                Icon(Icons.arrow_forward, color: AppColors.textPrimary),
               ],
             ),
           ),
@@ -141,4 +144,3 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
     );
   }
 }
-

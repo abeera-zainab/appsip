@@ -45,8 +45,7 @@ class PrimaryButton extends StatelessWidget {
     return _buildStandardButton();
   }
 
-  /// Builds the original button based on ElevatedButton.
-  /// This ensures backward compatibility for all other screens.
+
   Widget _buildStandardButton() {
     final style = ElevatedButton.styleFrom(
       backgroundColor: backgroundColor ?? AppColors.gradientEndRed,

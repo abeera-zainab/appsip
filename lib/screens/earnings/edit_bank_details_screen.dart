@@ -10,21 +10,10 @@ class EditBankDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // A reusable InputDecoration style to avoid repetition
-    final inputDecoration = InputDecoration(
-      filled: true,
-      fillColor: AppColors.cardColorsecondary, // The requested color
-      border: OutlineInputBorder( // A modern rounded border
-        borderRadius: BorderRadius.circular(12.0),
-        borderSide: BorderSide.none, // No visible border line
-      ),
-      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Bank Details'),
-      backgroundColor: AppColors.background,
+        backgroundColor: AppColors.background,
         elevation: 0,
         leading: IconButton(
           icon: SvgPicture.asset('assets/svg/arrow_back.svg'),
@@ -36,62 +25,74 @@ class EditBankDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CustomTextInputField(
-              label: 'Select Bank',
-              // We pass the DropdownButtonFormField to the 'field' property
-              field: DropdownButtonFormField<String>(
-                // We merge our reusable style with the specific icons for this field
-                decoration: inputDecoration.copyWith(
-                  prefixIcon: SvgPicture.asset('assets/svg/bank.svg'),
-                  hintText: 'Select Your Bank--',
+            // --- CHANGE 1: Manually created Dropdown with a consistent label ---
+            // We do this because CustomTextInputField is for text, not dropdowns.
+            const Text(
+              'Select Bank',
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+            ),
+            const SizedBox(height: 8),
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: AppColors.cardColorsecondary,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: BorderSide.none,
                 ),
-                hint: const Text('Select Your Bank--'),
-                icon:  SvgPicture.asset('assets/svg/vector.svg'),
-                dropdownColor: AppColors.cardColor,
-                items: ['Bank of America', 'Chase', 'Wells Fargo', 'Citibank']
-                    .map((bank) => DropdownMenuItem(value: bank, child: Text(bank)))
-                    .toList(),
-                onChanged: (value) {},
-              ), fillColor: AppColors.cardColorsecondary, filled: true,
+                contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(14.0),
+                  child: SvgPicture.asset('assets/svg/bank.svg'),
+                ),
+                hintText: 'Select Your Bank--',
+              ),
+              hint: const Text('Select Your Bank--'),
+              icon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                // Assuming 'vector.svg' is your dropdown arrow
+                child: SvgPicture.asset('assets/svg/vector.svg'), 
+              ),
+              dropdownColor: AppColors.cardColor,
+              items: ['Bank of America', 'Chase', 'Wells Fargo', 'Citibank']
+                  .map((bank) => DropdownMenuItem(value: bank, child: Text(bank)))
+                  .toList(),
+              onChanged: (value) {},
             ),
             const SizedBox(height: 20),
-            // We now pass a fully decorated TextFormField to the custom widget
+
+            // --- CHANGE 2: Using the proper CustomTextInputField widget ---
             CustomTextInputField(
               label: 'Account Holder Name',
-              field: TextFormField(
-                decoration: inputDecoration.copyWith(
-                  hintText: 'Type your full name here...',
-                ),
-              ), fillColor: AppColors.cardColorsecondary, filled: true,
+              hint: 'Type your full name here...',
             ),
             const SizedBox(height: 20),
-            // We do the same for the account number field
+
+            // --- CHANGE 3: Using CustomTextInputField for the account number ---
             CustomTextInputField(
               label: 'Account Number',
-              field: TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: inputDecoration.copyWith(
-                  hintText: 'XXXX - XXXX - XXXX - XXXX',
-                 
-                ),
-              ), fillColor: AppColors.cardColorsecondary, filled: true,
+              hint: 'XXXX - XXXX - XXXX - XXXX',
+              keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 40),
+
+            // Button Row remains the same
             Row(
               children: [
                 Expanded(
                   child: SecondaryButton(
                     text: 'Cancel',
                     onPressed: () => Navigator.of(context).pop(),
-                    // ignore: deprecated_member_use
-                   
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: PrimaryButton(
                     text: 'Save Changes',
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () {
+                      // TODO: Add save logic here
+                      Navigator.of(context).pop();
+                    },
                   ),
                 ),
               ],

@@ -22,10 +22,9 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
         leading: const BackButton(color: AppColors.textPrimary),
         title: const Text(
           "Enter Invitation Key",
-          style: TextStyle(color: AppColors.textPrimary, fontSize: 18),
+          style: TextStyle(color: AppColors.textPrimary, fontSize: 18,fontFamily: 'RedHatDisplay'),
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+      
         centerTitle: true,
       ),
       body: SafeArea(
@@ -35,12 +34,10 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 30),
-              // --- CHANGE IS HERE ---
-              // Replaced the custom _buildShieldIcon() with an Image.asset widget.
-              // Make sure to replace 'assets/images/your_shield_image.png' with the actual path to your image.
+             
               Center(
                 child: Image.asset(
-                  'assets/images/shield.png', // <-- REPLACE WITH YOUR IMAGE PATH
+                  'assets/images/shield.png', 
                   width: 160,
                   height: 160,
                 ),
@@ -117,13 +114,13 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
                 ),
                 gradient: const LinearGradient(
                   // Assuming these colors exist in your AppColors
-                  colors: [AppColors.primaryRed, AppColors.primaryRed],
+                  colors: [AppColors.gradientStartRed, AppColors.gradientEndRed],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primaryRed.withOpacity(0.4),
+                    color: AppColors.primaryRed,
                     blurRadius: 10,
                     offset: const Offset(0, 5),
                   ),
@@ -142,7 +139,6 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
     );
   }
 
-  // --- METHOD REMOVED ---
-  // The _buildShieldIcon method is no longer needed and has been deleted.
-  // --- END OF CHANGE ---
+  
+
 }
