@@ -114,7 +114,7 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
                 ),
                 gradient: const LinearGradient(
                   // Assuming these colors exist in your AppColors
-                  colors: [AppColors.gradientStartRed, AppColors.gradientEndRed],
+                  colors: [AppColors.gradientStartRed, AppColors.primaryRed],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),

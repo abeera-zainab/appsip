@@ -12,7 +12,6 @@ class PrimaryButton extends StatelessWidget {
   final Widget? icon;
   final double borderRadius;
   
-  // --- NEW: Optional parameters for advanced styling ---
   final LinearGradient? gradient;
   final List<BoxShadow>? boxShadow;
   final EdgeInsets? padding;
@@ -27,7 +26,6 @@ class PrimaryButton extends StatelessWidget {
     this.foregroundColor,
     this.icon,
     this.borderRadius = 30.0,
-    // --- These are optional, so existing calls won't error ---
     this.gradient,
     this.boxShadow,
     this.padding,
@@ -36,21 +34,18 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // --- CHECK: If a gradient is provided, build a custom button ---
     if (gradient != null) {
       return _buildGradientButton();
     }
-    
-    // --- FALLBACK: Otherwise, build the original ElevatedButton ---
     return _buildStandardButton();
   }
-
 
   Widget _buildStandardButton() {
     final style = ElevatedButton.styleFrom(
       backgroundColor: backgroundColor ?? AppColors.gradientEndRed,
       foregroundColor: foregroundColor ?? Colors.white,
-      padding: padding ?? const EdgeInsets.symmetric(vertical: 24),
+      // --- CHANGE: Reduced vertical padding to make the button shorter ---
+      padding: padding ?? const EdgeInsets.symmetric(vertical: 18),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
@@ -76,7 +71,6 @@ class PrimaryButton extends StatelessWidget {
     return button;
   }
 
-  /// Builds the new, advanced button with gradient and shadow.
   Widget _buildGradientButton() {
     final buttonContent = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -101,7 +95,8 @@ class PrimaryButton extends StatelessWidget {
           onTap: onPressed,
           borderRadius: BorderRadius.circular(borderRadius),
           child: Padding(
-            padding: padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+            // --- CHANGE: Adjusted padding to match the standard button's new height ---
+            padding: padding ?? const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
             child: buttonContent,
           ),
         ),

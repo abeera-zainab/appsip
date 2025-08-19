@@ -13,8 +13,7 @@ class EditBankDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Bank Details'),
-        backgroundColor: AppColors.background,
-        elevation: 0,
+        
         leading: IconButton(
           icon: SvgPicture.asset('assets/svg/arrow_back.svg'),
           onPressed: () => Navigator.of(context).pop(),
