@@ -149,7 +149,7 @@ class ProfileScreen extends StatelessWidget {
               "Profile",
               style: TextStyle(
                 color: AppColors.primaryRed,
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
