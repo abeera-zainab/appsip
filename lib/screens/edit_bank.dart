@@ -61,7 +61,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                 child: SvgPicture.asset('assets/svg/vector.svg'), 
               ),
               dropdownColor: AppColors.cardColor,
-              items: ['Bank of America', 'Chase', 'Wells Fargo', 'Citibank']
+              items: ['...', '...', '...', '...']
                   .map((bank) => DropdownMenuItem(value: bank, child: Text(bank)))
                   .toList(),
               onChanged: (value) {
@@ -84,15 +84,16 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
               hint: 'XXXX - XXXX - XXXX - XXXX',
               keyboardType: TextInputType.number,
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
 
             // --- CHANGE: Replaced the Row with a single PrimaryButton ---
             PrimaryButton(
               text: 'Submit',
-              isExpanded: true, // Makes the button full-width
+              isExpanded: true, 
+              borderRadius: 16,
               icon: SvgPicture.asset(
-                'assets/svg/check.svg', // Ensure you have this file in your assets
-                 // Style the icon to be visible on the button
+                'assets/svg/check.svg',
+                 
               ),
               onPressed: () {
                 // TODO: Add save logic here before popping
