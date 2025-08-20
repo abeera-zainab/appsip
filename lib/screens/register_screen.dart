@@ -78,15 +78,25 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
               ),
               const SizedBox(height: 20),
 
-              // Phone Number label (simplified without RichText)
-              Text(
-                "Phone Number ",
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: Theme.of(context).textTheme.bodyLarge?.color,
+              // --- MODIFICATION START ---
+              // Changed the Phone Number label to RichText to add a red asterisk
+              RichText(
+                text: TextSpan(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                      ),
+                  children: const <TextSpan>[
+                    TextSpan(text: 'Phone Number '),
+                    TextSpan(
+                      text: '*',
+                      style: TextStyle(color: Colors.red, fontSize: 14),
                     ),
+                  ],
+                ),
               ),
+              // --- MODIFICATION END ---
               const SizedBox(height: 8),
 
               // Phone Number input fields with reduced spacing
@@ -95,7 +105,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 children: [
                   // Country Code Picker
                   SizedBox(
-                    width: 70, // Reduced width
+                    width: 80,
                     child: TextFormField(
                       readOnly: true,
                       onTap: () { /* TODO: Implement country code picker logic */ },
@@ -116,7 +126,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8), // Reduced spacing from 16 to 8
+                  const SizedBox(width: 5), // Reduced spacing from 16 to 8
                   // Phone Number Input
                   Expanded(
                     child: TextFormField(
