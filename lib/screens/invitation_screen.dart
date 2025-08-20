@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:appsip/main.dart'; // Contains AppColors
+import 'package:appsip/main.dart';
 import 'package:appsip/screens/register_screen.dart' show RegisterBartenderScreen;
 import 'package:appsip/widgets/primary_button.dart';
+// --- CHANGE: Import the custom text field widget ---
+import 'package:appsip/widgets/custom_text_input_field.dart';
 
 class InvitationKeyScreen extends StatefulWidget {
   const InvitationKeyScreen({super.key});
@@ -17,14 +19,12 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       appBar: AppBar(
         leading: const BackButton(color: AppColors.textPrimary),
         title: const Text(
           "Enter Invitation Key",
-          style: TextStyle(color: AppColors.textPrimary, fontSize: 18,fontFamily: 'RedHatDisplay'),
+          style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontFamily: 'RedHatDisplay'),
         ),
-      
         centerTitle: true,
       ),
       body: SafeArea(
@@ -34,68 +34,56 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 30),
-             
               Center(
                 child: Image.asset(
-                  'assets/images/shield.png', 
+                  'assets/images/shield.png',
                   width: 160,
                   height: 160,
                 ),
               ),
-              // --- END OF CHANGE ---
               const SizedBox(height: 40),
-              Text(
+              const Text(
                 'Please enter the invitation key you have received from your Bar Venue for verification.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: AppColors.textSecondary.withOpacity(0.8),
+                  color: AppColors.textSecondary,
                   fontSize: 15,
                   height: 1.5,
                 ),
               ),
               const SizedBox(height: 40),
-              RichText(
-                text: const TextSpan(
-                  text: 'Enter Invitation Key',
-                  style: TextStyle(
-                      color: AppColors.textPrimary,
-                      fontSize: 14,
-                      fontFamily: 'RedHatDisplay'),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: ' *',
-                        style: TextStyle(color: AppColors.primaryRed, fontSize: 14)),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
+
+              // --- CHANGE: Replaced RichText and TextField with the custom widget ---
+              CustomTextInputField(
+                label: 'Enter Invitation Key *',
+                hint: 'Type here..',
                 controller: _keyController,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'RedHatDisplay',
-                  color: AppColors.textPrimary,
-                  fontWeight: FontWeight.normal,
-                ),
-                decoration: InputDecoration(
-                  hintText: "Type here..",
-                  hintStyle: TextStyle(color: AppColors.textSecondary),
-                  filled: true,
-                  fillColor: AppColors.cardColorsecondary,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 18,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
               ),
-              const SizedBox(height: 40),
-              // This call now works perfectly because PrimaryButton is updated.
+              const SizedBox(height: 30),
+
+              // --- CHANGE: Simplified the PrimaryButton call for better readability ---
               PrimaryButton(
                 text: "Verify",
+                isExpanded: true,
+                borderRadius: 16,
+                
+                icon: SvgPicture.asset(
+                  'assets/svg/badgecheck.svg',
+                  
+                ),
+                gradient: const LinearGradient(
+                  colors: [AppColors.gradientStartRed, AppColors.primaryRed],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+               
+                
+                // Set text color to white for better readability on the gradient
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -104,33 +92,6 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
                     ),
                   );
                 },
-                isExpanded: true,
-                borderRadius: 16,
-                icon: SvgPicture.asset(
-                  'assets/svg/badgecheck.svg',
-                  width: 22,
-                  height: 22,
-                  colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
-                ),
-                gradient: const LinearGradient(
-                  // Assuming these colors exist in your AppColors
-                  colors: [AppColors.gradientStartRed, AppColors.primaryRed],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primaryRed,
-                    blurRadius: 10,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                textStyle: const TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                ),
               ),
             ],
           ),
@@ -138,7 +99,4 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
       ),
     );
   }
-
-  
-
 }

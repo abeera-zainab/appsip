@@ -1,7 +1,7 @@
 import 'package:appsip/screens/password/change_password_screen.dart';
 import 'package:appsip/screens/earnings/edit_bank_details_screen.dart';
 import 'package:appsip/screens/edit-profile/edit_profile_screen.dart';
-import 'package:appsip/screens/help-and-support-screen.dart';
+import 'package:appsip/screens/help-and-support/help-and-support-screen.dart';
 import 'package:appsip/screens/logout_screen.dart';
 import 'package:appsip/screens/notifications/notifications_screen.dart';
 import 'package:appsip/screens/profile_swap.dart';

@@ -1,7 +1,5 @@
-// In lib/widgets/primary_button.dart
-
-import 'package:appsip/main.dart'; // For AppColors
 import 'package:flutter/material.dart';
+import 'package:appsip/main.dart'; 
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -44,7 +42,6 @@ class PrimaryButton extends StatelessWidget {
     final style = ElevatedButton.styleFrom(
       backgroundColor: backgroundColor ?? AppColors.gradientEndRed,
       foregroundColor: foregroundColor ?? Colors.white,
-      // --- CHANGE: Reduced vertical padding to make the button shorter ---
       padding: padding ?? const EdgeInsets.symmetric(vertical: 18),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
@@ -95,8 +92,9 @@ class PrimaryButton extends StatelessWidget {
           onTap: onPressed,
           borderRadius: BorderRadius.circular(borderRadius),
           child: Padding(
-            // --- CHANGE: Adjusted padding to match the standard button's new height ---
-            padding: padding ?? const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+            // --- FIX: Using the same padding logic as the standard button ---
+            // This now correctly respects the padding passed from the screen.
+            padding: padding ?? const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
             child: buttonContent,
           ),
         ),

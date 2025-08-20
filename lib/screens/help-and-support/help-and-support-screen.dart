@@ -1,4 +1,4 @@
-import 'package:appsip/screens/submit-issue-screen.dart';
+import 'package:appsip/screens/help-and-support/submit-issue-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:appsip/main.dart';
