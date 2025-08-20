@@ -8,13 +8,13 @@ class LogoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Stack(
         children: [
           
         
           // Dialog at the bottom
-          const Align(
+          Align(
             alignment: Alignment.bottomCenter,
             child: LogoutConfirmationDialog(),
           ),
@@ -47,10 +47,10 @@ class LogoutConfirmationDialog extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           // Confirmation text
-          Text(
+          const Text(
             'Are you sure you want to logout your account?',
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 20,
               fontWeight: FontWeight.bold, // Medium weight

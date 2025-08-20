@@ -47,7 +47,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              Text(
+              const Text(
                 'Please confirm your password to delete your account. Your account will be scheduled to be deleted after 30 days from this date.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -89,7 +89,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                   fillColor:AppColors.cardColorsecondary, 
                   hintText: 'Minimum 8 characters...',
 
-                  hintStyle: TextStyle(color: AppColors.textSecondary,fontFamily:'RedHatDisplay',fontSize:  16,fontWeight:FontWeight.normal),
+                  hintStyle: const TextStyle(color: AppColors.textSecondary,fontFamily:'RedHatDisplay',fontSize:  16,fontWeight:FontWeight.normal),
                  
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(14.0), 

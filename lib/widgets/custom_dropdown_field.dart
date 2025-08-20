@@ -14,7 +14,7 @@ class CustomDropdownField extends StatelessWidget {
   final Color? fillColor; // To allow custom background color
 
   const CustomDropdownField({
-    Key? key,
+    super.key,
     required this.label,
     required this.hintText,
     required this.items,
@@ -22,7 +22,7 @@ class CustomDropdownField extends StatelessWidget {
     this.onChanged,
     this.prefixIcon,
     this.fillColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

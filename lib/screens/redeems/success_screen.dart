@@ -1,6 +1,5 @@
 import 'dart:async'; // Import this for timer functionality
 import 'package:appsip/screens/main_screen_shell.dart';
-import 'package:appsip/screens/redeems/redeems_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appsip/widgets/success_widget.dart';
 

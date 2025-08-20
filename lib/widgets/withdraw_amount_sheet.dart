@@ -75,7 +75,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
         const SizedBox(height: 8),
         TextField(
           controller: _amountController,
-          keyboardType: TextInputType.numberWithOptions(decimal: true),
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
           decoration: InputDecoration(
             prefixIcon: const Padding(
@@ -166,7 +166,7 @@ class _WithdrawAmountSheetState extends State<WithdrawAmountSheet> {
 }
 
 class SuccessDialog extends StatelessWidget {
-  const SuccessDialog({Key? key}) : super(key: key);
+  const SuccessDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

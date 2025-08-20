@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:appsip/main.dart';
 
 class SwitchProfileScreen extends StatelessWidget {
-  const SwitchProfileScreen({Key? key}) : super(key: key);
+  const SwitchProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       
       body: Align(
         alignment: Alignment.bottomCenter,
@@ -17,7 +17,7 @@ class SwitchProfileScreen extends StatelessWidget {
 }
 
 class _SwitchProfileContent extends StatelessWidget {
-  const _SwitchProfileContent({Key? key}) : super(key: key);
+  const _SwitchProfileContent({super.key});
 
   @override
   Widget build(BuildContext context) {

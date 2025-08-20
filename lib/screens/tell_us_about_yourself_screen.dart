@@ -10,15 +10,19 @@ import 'package:image_picker/image_picker.dart';
 import 'package:appsip/main.dart';
 import 'package:appsip/widgets/photo_upload_widget.dart';
 import 'package:appsip/widgets/color_grid.dart';
+// Import the PrimaryButton widget
+import 'package:appsip/widgets/primary_button.dart';
 
 class TellUsAboutYourselfScreen extends StatefulWidget {
   const TellUsAboutYourselfScreen({super.key});
 
   @override
-  State<TellUsAboutYourselfScreen> createState() => _TellUsAboutYourselfScreenState();
+  State<TellUsAboutYourselfScreen> createState() =>
+      _TellUsAboutYourselfScreenState();
 }
 
-class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
+class _TellUsAboutYourselfScreenState
+    extends State<TellUsAboutYourselfScreen> {
   File? _selectedImage;
   int _selectedColorIndex = 1;
 
@@ -39,7 +43,8 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
       MaterialPageRoute(builder: (context) => const BankDetailsScreen()),
     );
     print('Selected image path: ${_selectedImage?.path}');
-    print('Selected color: ${AppColors.profileBackgrounds[_selectedColorIndex]}');
+    print(
+        'Selected color: ${AppColors.profileBackgrounds[_selectedColorIndex]}');
   }
 
   @override
@@ -52,7 +57,11 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
         ),
         title: const Text(
           'Tell Us About Yourself',
-          style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 18, fontFamily: 'RedHatDisplay'),
+          style: TextStyle(
+              color: AppColors.textPrimary,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontFamily: 'RedHatDisplay'),
         ),
         centerTitle: true,
       ),
@@ -73,7 +82,8 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
                   children: [
                     TextSpan(
                       text: 'Select Profile Background Color ',
-                      style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
+                      style:
+                          TextStyle(color: AppColors.textPrimary, fontSize: 16),
                     ),
                     TextSpan(
                       text: '*',
@@ -95,52 +105,29 @@ class _TellUsAboutYourselfScreenState extends State<TellUsAboutYourselfScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: _buildNextButton(),
-    );
-  }
-
-  Widget _buildNextButton() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-      child: ElevatedButton(
-        onPressed: _navigateToNextScreen,
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-        child: Ink(
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [AppColors.gradientStartRed, AppColors.gradientEndRed],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Container(
-            alignment: Alignment.center,
-            height: 55,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset('assets/svg/right-gesture.svg'),
-                const SizedBox(width: 8),
-                const Text(
-                  'Next',
-                  style: TextStyle(
-                    color: AppColors.textPrimary,
-                    fontSize: 16,
-                    fontFamily: 'RedHatDisplay',
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ],
-            ),
+      
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+        child: PrimaryButton(
+          text: 'Next',
+          onPressed: _navigateToNextScreen,
+          isExpanded: true,
+          borderRadius: 16,
+          icon: SvgPicture.asset('assets/svg/right-gesture.svg'),
+        
+          // Set padding to achieve a height similar to the original 55px container
+          
+          textStyle: const TextStyle(
+            color: AppColors.textPrimary,
+            fontSize: 16,
+            fontFamily: 'RedHatDisplay',
+            fontWeight: FontWeight.normal,
           ),
         ),
       ),
+      // --- MODIFICATION END ---
     );
   }
+
+  
 }

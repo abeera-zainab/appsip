@@ -8,7 +8,7 @@ import 'package:appsip/main.dart';
 // --- A helper widget for creating labels with a required asterisk ---
 class RequiredLabel extends StatelessWidget {
   final String label;
-  const RequiredLabel({Key? key, required this.label}) : super(key: key);
+  const RequiredLabel({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +90,11 @@ class CustomDropdownField extends StatefulWidget {
   final String hintText;
   final List<String> items;
   const CustomDropdownField({
-    Key? key,
+    super.key,
     required this.label,
     required this.hintText,
     required this.items,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomDropdownField> createState() => _CustomDropdownFieldState();
@@ -254,15 +254,15 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                 child: Row(
                   children: [
                     SvgPicture.asset('assets/svg/attachment.svg'),
-                    SizedBox(width: 12),
-                    Text(
+                    const SizedBox(width: 12),
+                    const Text(
                       'Upload a Screenshot or Video--',
                       style: TextStyle(
                         color: AppColors.textSecondary,
                         fontFamily: 'RedHatDisplay',
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     SvgPicture.asset('assets/svg/upload.svg'),
                   ],
                 ),

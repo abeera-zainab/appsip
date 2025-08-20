@@ -40,7 +40,7 @@ class CustomTextInputField extends StatelessWidget {
     // Helper function to build prefix/suffix icons, now local to this widget
     Widget? buildIcon(String? svgPath, IconData? iconData, {bool isSuffix = false}) {
       Widget? iconWidget;
-      final Color iconColor = AppColors.textPrimary;
+      const Color iconColor = AppColors.textPrimary;
 
       if (svgPath != null) {
         iconWidget = SvgPicture.asset(svgPath, width: 22, height: 22, color: iconColor);

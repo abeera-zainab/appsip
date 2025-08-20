@@ -286,7 +286,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               SizedBox(
                 width: double.infinity,
                 child: TextButton.icon(
-                  icon: Icon(Icons.delete_outline, color: AppColors.primaryRed) ,
+                  icon: const Icon(Icons.delete_outline, color: AppColors.primaryRed) ,
                   label: const Text(
                     'Delete Account',
                     style: TextStyle(color: AppColors.primaryRed, fontWeight: FontWeight.bold),

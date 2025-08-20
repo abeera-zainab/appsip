@@ -53,7 +53,7 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
               ),
               const SizedBox(height: 40),
 
-              // --- CHANGE: Replaced RichText and TextField with the custom widget ---
+              
               CustomTextInputField(
                 label: 'Enter Invitation Key *',
                 hint: 'Type here..',
@@ -61,7 +61,6 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
               ),
               const SizedBox(height: 30),
 
-              // --- CHANGE: Simplified the PrimaryButton call for better readability ---
               PrimaryButton(
                 text: "Verify",
                 isExpanded: true,
@@ -71,14 +70,10 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
                   'assets/svg/badgecheck.svg',
                   
                 ),
-                gradient: const LinearGradient(
-                  colors: [AppColors.gradientStartRed, AppColors.primaryRed],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
+              
                
                 
-                // Set text color to white for better readability on the gradient
+               
                 textStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
@@ -91,8 +86,10 @@ class _InvitationKeyScreenState extends State<InvitationKeyScreen> {
                       builder: (context) => const RegisterBartenderScreen(),
                     ),
                   );
+               
                 },
               ),
+              const SizedBox(height: 10),
             ],
           ),
         ),

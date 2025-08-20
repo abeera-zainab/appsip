@@ -28,47 +28,47 @@ class TermsAndPrivacyScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Stack(
+      body: const Stack(
         children: [
           // Scrollable text content
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const _Heading('Heading 01'),
-                  const SizedBox(height: 16),
-                  const _Paragraph(
+                  _Heading('Heading 01'),
+                  SizedBox(height: 16),
+                  _Paragraph(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque enim eget purus vulputate, in gravida est ornare. Nam eu eros ac mauris posuere sollicitudin.',
                   ),
-                  const SizedBox(height: 20),
-                  const _Paragraph(
+                  SizedBox(height: 20),
+                  _Paragraph(
                     'Fusce feugiat vulputate ex, eget pellentesque nunc commodo in. Nam sed magna at nulla lacinia semper. Aliquam ut odio egestas, faucibus velit a, ornare turpis.',
                   ),
-                  const SizedBox(height: 20),
-                  const _Paragraph(
+                  SizedBox(height: 20),
+                  _Paragraph(
                     'Nulla id iaculis tellus, tempus dapibus magna. Morbi quis nulla ac augue euismod euismod:',
                   ),
-                  const SizedBox(height: 12),
-                  const _ListItem('Nam id ante in nibh placerat iaculis.'),
-                  const _ListItem('Curabitur magna magna, faucibus a tellus eget.'),
-                  const _ListItem('Blandit aliquet mauris.'),
-                  const SizedBox(height: 20),
-                  const _Paragraph(
+                  SizedBox(height: 12),
+                  _ListItem('Nam id ante in nibh placerat iaculis.'),
+                  _ListItem('Curabitur magna magna, faucibus a tellus eget.'),
+                  _ListItem('Blandit aliquet mauris.'),
+                  SizedBox(height: 20),
+                  _Paragraph(
                     'Quis ac velit non risus luctus commodo. Nullam et sem nibh.',
                   ),
-                  const SizedBox(height: 30),
-                  const _Heading('Heading 01'),
-                  const SizedBox(height: 16),
-                  const _Paragraph(
+                  SizedBox(height: 30),
+                  _Heading('Heading 01'),
+                  SizedBox(height: 16),
+                  _Paragraph(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque enim eget purus vulputate, in gravida est ornare. Nam eu eros ac mauris posuere sollicitudin.',
                   ),
-                  const SizedBox(height: 20),
-                  const _Paragraph(
+                  SizedBox(height: 20),
+                  _Paragraph(
                     'Fusce feugiat vulputate ex, eget pellentesque nunc commodo in. Nam sed magna at nulla lacinia semper. Aliquam ut odio egestas, faucibus velit a, ornare turpis.',
                   ),
-                  const SizedBox(height: 40),
+                  SizedBox(height: 40),
                 ],
               ),
             ),

@@ -50,7 +50,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // First Name and Last Name
-              Row(
+              const Row(
                 children: [
                   Expanded(
                     child: CustomTextInputField(
@@ -58,7 +58,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                       hint: "Type here...",
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: CustomTextInputField(
                       label: "Last Name *",

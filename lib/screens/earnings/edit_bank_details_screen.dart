@@ -61,14 +61,14 @@ class EditBankDetailsScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // --- CHANGE 2: Using the proper CustomTextInputField widget ---
-            CustomTextInputField(
+            const CustomTextInputField(
               label: 'Account Holder Name',
               hint: 'Type your full name here...',
             ),
             const SizedBox(height: 20),
 
             // --- CHANGE 3: Using CustomTextInputField for the account number ---
-            CustomTextInputField(
+            const CustomTextInputField(
               label: 'Account Number',
               hint: 'XXXX - XXXX - XXXX - XXXX',
               keyboardType: TextInputType.number,

@@ -12,7 +12,7 @@ class SunburstPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     const int numberOfRays = 24;
-    final double anglePerSegment = (2 * pi) / numberOfRays;
+    const double anglePerSegment = (2 * pi) / numberOfRays;
     final double rayWidthAngle = anglePerSegment / 2; // Each ray takes half the segment
 
     for (int i = 0; i < numberOfRays; i++) {

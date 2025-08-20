@@ -142,7 +142,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             filled: true,
             fillColor: AppColors.cardColorsecondary,
             hintText: 'Minimum 8 characters...',
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               color: AppColors.textSecondary,
               fontFamily: 'RedHatDisplay',
               fontSize: 16,

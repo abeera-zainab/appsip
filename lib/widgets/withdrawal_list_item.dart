@@ -8,12 +8,12 @@ class WithdrawalListItem extends StatelessWidget {
   final String status;
 
   const WithdrawalListItem({
-    Key? key,
+    super.key,
     required this.amount,
     required this.date,
     required this.trxId,
     required this.status,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

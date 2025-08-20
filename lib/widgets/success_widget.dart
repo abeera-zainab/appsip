@@ -48,7 +48,7 @@ class SuccessScreenWidget extends StatelessWidget {
                 Text(
                   description!,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 14,
                     height: 1.5,

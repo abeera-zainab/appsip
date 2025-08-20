@@ -4,7 +4,6 @@ import 'package:appsip/screens/redeems/redeems_screen.dart';
 import 'package:appsip/screens/earnings/earnings_screen.dart';
 import 'package:appsip/screens/challenges_screen.dart';
 import 'package:appsip/widgets/custom_bottom_nav_bar.dart';
-import 'package:appsip/screens/profile_screen.dart';
 
 class MainScreenShell extends StatefulWidget {
   const MainScreenShell({super.key});

@@ -73,13 +73,13 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
             ),
             const SizedBox(height: 20),
 
-            CustomTextInputField(
+            const CustomTextInputField(
               label: 'Account Holder Name',
               hint: 'Type your full name here...',
             ),
             const SizedBox(height: 20),
 
-            CustomTextInputField(
+            const CustomTextInputField(
               label: 'Account Number',
               hint: 'XXXX - XXXX - XXXX - XXXX',
               keyboardType: TextInputType.number,
