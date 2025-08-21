@@ -2,6 +2,7 @@
 import 'package:appsip/screens/edit_bank.dart';
 import 'package:appsip/screens/invitation_screen.dart';
 import 'package:appsip/screens/logout_screen.dart';
+import 'package:appsip/screens/main_screen_shell.dart';
 import 'package:appsip/screens/password/change_password_screen.dart';
 import 'package:appsip/screens/profile_screen.dart';
 import 'package:appsip/screens/register_screen.dart';
@@ -103,8 +104,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: 
-    const InvitationKeyScreen()
-      //const MainScreenShell(),
+    //const InvitationKeyScreen()
+      const MainScreenShell(),
        //const TellUsAboutYourselfScreen(),
        //const ProfileScreen()
        //const DeleteAccountScreen()

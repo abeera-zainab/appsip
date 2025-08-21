@@ -23,35 +23,11 @@ class EarningsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Earnings', style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: AppColors.primaryRed)),
-            const SizedBox(height: 4),
-          
-            // ignore: deprecated_member_use
-            Text('View your total earnings.', style: TextStyle(fontSize: 14, color: AppColors.textSecondary.withOpacity(0.8))),
-          ],
-        ),
+        title: const _EarningsAppBarTitle(),
         titleSpacing: 16.0,
         toolbarHeight: 80,
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 16),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: AppColors.cardColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Row(
-              children: [
-                Icon(Icons.calendar_today, size: 16, color: AppColors.textSecondary),
-                SizedBox(width: 8),
-                Text('\$12,723.32', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.textSecondary)),
-              ],
-            ),
-          )
+        actions: const [
+          _EarningsAppBarAction(),
         ],
       ),
       body: SingleChildScrollView(
@@ -77,37 +53,98 @@ class EarningsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            _buildOverviewCards(),
+            const _OverviewCards(),
             const SizedBox(height: 24),
-            _buildActionButtons(context),
+            _ActionButtons(
+              onWithdrawPressed: () => _showWithdrawSheet(context),
+            ),
             const SizedBox(height: 32),
-            _buildRecentWithdrawalsHeader(),
+            const _RecentWithdrawalsHeader(),
             const SizedBox(height: 16),
-            _buildWithdrawalsList(),
+            const _WithdrawalsList(),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _buildOverviewCards() {
-    return Row(
+// --- AppBar Widgets ---
+
+class _EarningsAppBarTitle extends StatelessWidget {
+  const _EarningsAppBarTitle();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(child: _buildInfoCard('Total Earnings', '\$21,408', '.00')),
-        const SizedBox(width: 16),
-        Expanded(child: _buildInfoCard('Available For Withdraw', '\$12,723', '.32')),
+        const Text('Earnings', style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: AppColors.primaryRed)),
+        const SizedBox(height: 4),
+        Text('View your total earnings.', style: TextStyle(fontSize: 14, color: AppColors.textSecondary.withOpacity(0.8))),
       ],
     );
   }
+}
 
-  Widget _buildInfoCard(String title, String amount, String cents) {
+class _EarningsAppBarAction extends StatelessWidget {
+  const _EarningsAppBarAction();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: AppColors.cardColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: const Row(
+        children: [
+          Icon(Icons.calendar_today, size: 16, color: AppColors.textSecondary),
+          SizedBox(width: 8),
+          Text('\$12,723.32', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.textSecondary)),
+        ],
+      ),
+    );
+  }
+}
+
+// --- Body Widgets ---
+
+class _OverviewCards extends StatelessWidget {
+  const _OverviewCards();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        Expanded(child: _InfoCard(title: 'Total Earnings', amount: '\$21,408', cents: '.00')),
+        SizedBox(width: 16),
+        Expanded(child: _InfoCard(title: 'Available For Withdraw', amount: '\$12,723', cents: '.32')),
+      ],
+    );
+  }
+}
+
+class _InfoCard extends StatelessWidget {
+  final String title;
+  final String amount;
+  final String cents;
+
+  const _InfoCard({
+    required this.title,
+    required this.amount,
+    required this.cents,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        // ignore: deprecated_member_use
         color: AppColors.primaryRed.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20),
-        // ignore: deprecated_member_use
         border: Border.all(color: AppColors.primaryRed.withOpacity(0.5)),
       ),
       child: Column(
@@ -128,8 +165,15 @@ class EarningsScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildActionButtons(BuildContext context) {
+class _ActionButtons extends StatelessWidget {
+  final VoidCallback onWithdrawPressed;
+
+  const _ActionButtons({required this.onWithdrawPressed});
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
@@ -142,41 +186,53 @@ class EarningsScreen extends StatelessWidget {
         Expanded(
           child: PrimaryButton(
             text: 'Withdraw Earnings',
-            onPressed: () => _showWithdrawSheet(context),
+            onPressed: onWithdrawPressed,
           ),
         ),
       ],
     );
   }
+}
 
-  Widget _buildRecentWithdrawalsHeader() {
+class _RecentWithdrawalsHeader extends StatelessWidget {
+  const _RecentWithdrawalsHeader();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Recent Withdrawals', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
-        SingleChildScrollView(
+        const SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              _buildFilterChip('Today', isSelected: true),
-              _buildFilterChip('Last 7 days'),
-              _buildFilterChip('Last 30 days'),
-              _buildFilterChip('Success'),
-              _buildFilterChip('Failed'),
+              _FilterChip(label: 'Today', isSelected: true),
+              _FilterChip(label: 'Last 7 days'),
+              _FilterChip(label: 'Last 30 days'),
+              _FilterChip(label: 'Success'),
+              _FilterChip(label: 'Failed'),
             ],
           ),
         )
       ],
     );
   }
-  
-  Widget _buildFilterChip(String label, {bool isSelected = false}) {
+}
+
+class _FilterChip extends StatelessWidget {
+  final String label;
+  final bool isSelected;
+
+  const _FilterChip({required this.label, this.isSelected = false});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 8),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        // ignore: deprecated_member_use
         color: isSelected ? AppColors.primaryRed.withOpacity(0.15) : AppColors.cardColor,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
@@ -193,8 +249,13 @@ class EarningsScreen extends StatelessWidget {
       ),
     );
   }
-  
-  Widget _buildWithdrawalsList() {
+}
+
+class _WithdrawalsList extends StatelessWidget {
+  const _WithdrawalsList();
+
+  @override
+  Widget build(BuildContext context) {
     final withdrawals = [
       {'amount': '220.00', 'date': 'Jun 2, 2025 11:36:56 am', 'trx': 'TRX-1475', 'status': 'Paid'},
       {'amount': '220.00', 'date': 'May 20, 2025 5:15:41 am', 'trx': 'TRX-2980', 'status': 'Pending'},
