@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:appsip/main.dart';
 
+// Import your custom button widgets
+import 'package:appsip/widgets/primary_button.dart';
+import 'package:appsip/widgets/secondary_button.dart';
+
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -63,8 +67,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     children: [
                       const SizedBox(height: 30),
                       
-                      // Current Password Field
-                      _buildPasswordSection(
+                      // Current Password Field using the new widget
+                      PasswordInputField(
                         label: 'Current Password',
                         controller: _currentPasswordController,
                         isVisible: _isCurrentPasswordVisible,
@@ -72,10 +76,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           setState(() => _isCurrentPasswordVisible = !_isCurrentPasswordVisible);
                         },
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 10),
 
-                      // New Password Field
-                      _buildPasswordSection(
+                      // New Password Field using the new widget
+                      PasswordInputField(
                         label: 'New Password',
                         controller: _newPasswordController,
                         isVisible: _isNewPasswordVisible,
@@ -83,10 +87,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           setState(() => _isNewPasswordVisible = !_isNewPasswordVisible);
                         },
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 10),
 
-                      // Confirm New Password Field
-                      _buildPasswordSection(
+                      // Confirm New Password Field using the new widget
+                      PasswordInputField(
                         label: 'Confirm New Password',
                         controller: _confirmPasswordController,
                         isVisible: _isConfirmPasswordVisible,
@@ -98,21 +102,69 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                 ),
               ),
-              _buildActionButtons(context),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24.0, top: 16.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SecondaryButton(
+                        text: 'Cancel',
+                        onPressed: () => Navigator.of(context).pop(),
+                        foregroundColor: AppColors.textSecondary ,
+                        borderRadius: 16.0,
+                        // SecondaryButton defaults to vertical: 16 padding
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: PrimaryButton(
+                        text: 'Change Password',
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const ChangePasswordUpdatescreen(),
+                            ),
+                          );
+                        },
+                        borderRadius: 16.0,
+                   
+                        padding: const EdgeInsets.symmetric(vertical: 18),
+                       
+                        textStyle: const TextStyle(
+                          color: AppColors.textPrimary,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
+                          fontFamily: 'RedHatDisplay',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  /// A reusable widget method to build each password input section.
-  Widget _buildPasswordSection({
-    required String label,
-    required TextEditingController controller,
-    required bool isVisible,
-    required VoidCallback onVisibilityToggle,
-  }) {
+class PasswordInputField extends StatelessWidget {
+  final String label;
+  final TextEditingController controller;
+  final bool isVisible;
+  final VoidCallback onVisibilityToggle;
+
+  const PasswordInputField({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.isVisible,
+    required this.onVisibilityToggle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -133,7 +185,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             ],
           ),
         ),
-        const SizedBox(height: 12),
+      
+        const SizedBox(height: 8),
         TextFormField(
           controller: controller,
           obscureText: !isVisible,
@@ -146,6 +199,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               color: AppColors.textSecondary,
               fontFamily: 'RedHatDisplay',
               fontSize: 16,
+            
             ),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -169,79 +223,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           ),
         ),
       ],
-    );
-  }
-
-  /// Builds the bottom action buttons for the screen.
-  Widget _buildActionButtons(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24.0, top: 16.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: ElevatedButton.icon(
-              onPressed: () => Navigator.of(context).pop(),
-              icon: SvgPicture.asset(
-                'assets/svg/xmark.svg',
-                colorFilter: const ColorFilter.mode(AppColors.primaryRed, BlendMode.srcIn),
-              ),
-              label: const Text(
-                'Cancel',
-                style: TextStyle(
-                    color: AppColors.gradientEndRed,
-                    fontWeight: FontWeight.normal,
-                    fontFamily: 'RedHatDisplay'),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.cardColorsecondary,
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                 gradient: const LinearGradient(
-                  colors: [AppColors.primaryRed, AppColors.gradientEndRed],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: ElevatedButton(
-                onPressed: () {
-                  // TODO: Add validation and password change logic here
-                 Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const ChangePasswordUpdatescreen(),
-                        ),
-                      );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  padding: const EdgeInsets.symmetric(vertical: 18),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                ),
-                child: const Text(
-                  'Change Password',
-                  style: TextStyle(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.normal,
-                       fontSize:16 ,
-                      fontFamily: 'RedHatDisplay'),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

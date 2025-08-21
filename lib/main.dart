@@ -1,6 +1,7 @@
  import 'package:appsip/screens/edit_bank.dart';
 import 'package:appsip/screens/invitation_screen.dart';
 import 'package:appsip/screens/logout_screen.dart';
+import 'package:appsip/screens/password/change_password_screen.dart';
 import 'package:appsip/screens/profile_screen.dart';
 import 'package:appsip/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +106,7 @@ class MyApp extends StatelessWidget {
       //const MainScreenShell(),
        //const TellUsAboutYourselfScreen(),
        //const ProfileScreen()
-       const LogoutPage()
+       const ChangePasswordScreen()
        //const RegisterBartenderScreen()22
        //const BankDetailsScreen()
       

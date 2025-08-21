@@ -29,20 +29,20 @@ class LogoutConfirmationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // --- CHANGE START: Adjusting container to match SwitchProfileScreen ---
+    
     return Container(
       width: double.infinity, // Take full width
-      // Using fromLTRB to match SwitchProfileScreen's padding exactly
+      
       padding: const EdgeInsets.fromLTRB(24, 40, 24, 40), 
       decoration: const BoxDecoration(
-        color: AppColors.background,
-        // Only rounding the top corners to create a "docked" bottom sheet look
+      
+       
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(28.0),
           topRight: Radius.circular(28.0),
         ),
       ),
-      // --- CHANGE END ---
+    
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -87,7 +87,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
                     print("Logout pressed");
                   },
                   borderRadius: 16, 
-                  // Matching the vertical padding of the profile swap screen's primary button
+                  
                   padding: const EdgeInsets.symmetric(vertical: 18),
                 ),
               ),
