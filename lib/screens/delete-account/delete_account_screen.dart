@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// Assuming your AppColors and next screen are located here
 import 'package:appsip/main.dart'; 
 import 'package:appsip/screens/delete-account/account_deletion_scheduled.dart';
+// Import your custom button widgets
+import 'package:appsip/widgets/primary_button.dart';
+import 'package:appsip/widgets/secondary_button.dart';
 
 class DeleteAccountScreen extends StatefulWidget {
   const DeleteAccountScreen({super.key});
@@ -23,18 +25,12 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // A constant for the button shape to avoid repetition
-    final buttonShape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-    );
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
-            // --- FIX 1: Changed alignment to start for correct layout ---
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const SizedBox(height: 24),
               const Text(
@@ -51,7 +47,6 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                 'Please confirm your password to delete your account. Your account will be scheduled to be deleted after 30 days from this date.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  // Used primary text color with opacity to match design
                   color: AppColors.textSecondary, 
                   fontSize: 14,
                   height: 1.5,
@@ -60,24 +55,24 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
               ),
               const SizedBox(height: 40),
               Align(
-  alignment: Alignment.centerLeft,
-  child: RichText(
-    text: const TextSpan(
-      style: TextStyle(
-        color: AppColors.textPrimary,
-        fontSize: 14,
-        fontFamily: 'RedHatDisplay',
-      ),
-      children: [
-        TextSpan(text: 'Confirm Password'),
-        TextSpan(
-          text: ' *',
-          style: TextStyle(color: AppColors.primaryRed),
-        ),
-      ],
-    ),
-  ),
-),
+                alignment: Alignment.centerLeft,
+                child: RichText(
+                  text: const TextSpan(
+                    style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: 14,
+                      fontFamily: 'RedHatDisplay',
+                    ),
+                    children: [
+                      TextSpan(text: 'Confirm Password'),
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(color: AppColors.primaryRed),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _passwordController,
@@ -85,23 +80,19 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                 style: const TextStyle(color: AppColors.textPrimary),
                 decoration: InputDecoration(
                   filled: true,
-          
                   fillColor:AppColors.cardColorsecondary, 
                   hintText: 'Minimum 8 characters...',
-
                   hintStyle: const TextStyle(color: AppColors.textSecondary,fontFamily:'RedHatDisplay',fontSize:  16,fontWeight:FontWeight.normal),
-                 
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(14.0), 
                     child: SvgPicture.asset('assets/svg/lock.svg',
                     width: 24,
                     height: 24,),
                   ),
-              
                   suffixIcon: IconButton(
                     icon: SvgPicture.asset(
                       _isPasswordVisible
-                          ? 'assets/svg/eyeopen.svg'
+                          ? 'assets/svg/eyeopen.svg' // Assuming these are the correct asset names
                           : 'assets/svg/eyeclosed.svg', 
                       colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
                       height: 24,
@@ -122,31 +113,22 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
               ),
               const SizedBox(height: 20),
               
+              // --- BUTTONS REPLACED WITH WIDGETS ---
               Row(
                 children: [
                   Expanded(
-                    child: ElevatedButton(
+                    child: SecondaryButton(
+                      text: 'Cancel',
                       onPressed: () => Navigator.of(context).pop(),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.cardColorsecondary,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: buttonShape,
-                      ),
-                      child: const Text(
-                        'Cancel',
-                        style: TextStyle(
-                          color: AppColors.textPrimary,
-                         
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16,
-                          fontFamily: 'RedHatDisplay',
-                        ),
-                      ),
+                      borderRadius: 16.0,
+                      // Override the default text color to match the original design
+                      foregroundColor: AppColors.textPrimary,
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: ElevatedButton(
+                    child: PrimaryButton(
+                      text: 'Delete Account',
                       onPressed: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
@@ -154,20 +136,16 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                           ),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryRed,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: buttonShape,
-                      ),
-                      child: const Text(
-                        'Delete Account',
-                        style: TextStyle(
-                          color: Colors.white,
+                      borderRadius: 16.0,
+                     
+                      // Override padding and text style to match the original design
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      textStyle: const TextStyle(
+                          color: AppColors.textPrimary,
                           fontWeight: FontWeight.normal,
                           fontSize: 16,
                           fontFamily: 'RedHatDisplay',
                         ),
-                      ),
                     ),
                   ),
                 ],

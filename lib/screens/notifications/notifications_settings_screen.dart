@@ -47,43 +47,60 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         children: [
-          _buildNotificationItem(
-            'New Skip Pass Redeemed',
-            'Alert me when a customer redeems a pass at my bar.',
-            settings['skip_pass']!,
-            (v) => setState(() => settings['skip_pass'] = v),
+          NotificationSettingItem(
+            title: 'New Skip Pass Redeemed',
+            description: 'Alert me when a customer redeems a pass at my bar.',
+            value: settings['skip_pass']!,
+            onChanged: (v) => setState(() => settings['skip_pass'] = v),
           ),
-          _buildNotificationItem(
-            'Challenge Updates',
-            'Get notified when new weekly challenges go live or when one is completed.',
-            settings['challenge_updates']!,
-            (v) => setState(() => settings['challenge_updates'] = v),
+          NotificationSettingItem(
+            title: 'Challenge Updates',
+            description: 'Get notified when new weekly challenges go live or when one is completed.',
+            value: settings['challenge_updates']!,
+            onChanged: (v) => setState(() => settings['challenge_updates'] = v),
           ),
-          _buildNotificationItem(
-            'Payout Notifications',
-            'Be alerted when payouts are sent or your balance is updated.',
-            settings['payouts']!,
-            (v) => setState(() => settings['payouts'] = v),
+          NotificationSettingItem(
+            title: 'Payout Notifications',
+            description: 'Be alerted when payouts are sent or your balance is updated.',
+            value: settings['payouts']!,
+            onChanged: (v) => setState(() => settings['payouts'] = v),
           ),
-          _buildNotificationItem(
-            'Team Announcements',
-            'Updates from venue owners or SipSkip team messages.',
-            settings['team_announcements']!,
-            (v) => setState(() => settings['team_announcements'] = v),
+          NotificationSettingItem(
+            title: 'Team Announcements',
+            description: 'Updates from venue owners or SipSkip team messages.',
+            value: settings['team_announcements']!,
+            onChanged: (v) => setState(() => settings['team_announcements'] = v),
           ),
-          _buildNotificationItem(
-            'App Updates & Tips',
-            'Learn about new features or improvements.',
-            settings['app_updates']!,
-            (v) => setState(() => settings['app_updates'] = v),
+          NotificationSettingItem(
+            title: 'App Updates & Tips',
+            description: 'Learn about new features or improvements.',
+            value: settings['app_updates']!,
+            onChanged: (v) => setState(() => settings['app_updates'] = v),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildNotificationItem(
-      String title, String description, bool value, ValueChanged<bool> onChanged) {
+
+/// A reusable widget to display a single notification setting item with a toggle switch.
+class NotificationSettingItem extends StatelessWidget {
+  final String title;
+  final String description;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  const NotificationSettingItem({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.value,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4.0),
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
