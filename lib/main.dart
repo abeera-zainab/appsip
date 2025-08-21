@@ -1,4 +1,6 @@
+import 'package:appsip/screens/challenges_screen.dart';
 import 'package:appsip/screens/invitation_screen.dart';
+import 'package:appsip/screens/main_screen_shell.dart';
 import 'package:flutter/material.dart';
 // --- CHANGE 1: Import the new colors file ---
 import 'package:appsip/theme/app_colors.dart';
@@ -56,7 +58,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const InvitationKeyScreen(),
+      home: //const InvitationKeyScreen(),
+      const MainScreenShell()
+   
     );
   }
 }
