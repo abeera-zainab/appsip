@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:appsip/main.dart';
 import 'package:appsip/widgets/section_header.dart';
 
+
+
 class Redemption {
   final String name;
   final String time;
@@ -14,6 +16,7 @@ class Redemption {
 
 enum PassType { Gold, Basic }
 
+
 class RedeemsScreen extends StatefulWidget {
   const RedeemsScreen({super.key});
 
@@ -22,6 +25,7 @@ class RedeemsScreen extends StatefulWidget {
 }
 
 class _RedeemsScreenState extends State<RedeemsScreen> {
+ 
   final List<Redemption> _redemptions = [
     Redemption(name: 'Katie S.', time: '7:35:41 am', id: 'SKP-2078', type: PassType.Gold, amount: 5.00),
     Redemption(name: 'Chris G.', time: '1:28:15 pm', id: 'SKP-4945', type: PassType.Basic, amount: 2.50),
@@ -34,25 +38,24 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       
         toolbarHeight: 80,
-        title: _buildHeader(),
+        title: const _AppBarContent(),
       ),
       body: SafeArea(
-        top: false, // The app bar already provides top padding
+        top: false,
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildOverview(),
+                const _OverviewSection(),      // Replaced method with class
                 const SizedBox(height: 24),
-                _buildSearchBar(),
+                const _SearchBar(),            // Replaced method with class
                 const SizedBox(height: 20),
-                _buildFilterChips(),
+                const _FilterChipsList(),      // Replaced method with class
                 const SizedBox(height: 24),
-                _buildRedemptionsList(),
+                _RedemptionsList(redemptions: _redemptions), // Replaced method with class
                 const SizedBox(height: 24),
               ],
             ),
@@ -61,8 +64,16 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
       ),
     );
   }
+}
 
-  Widget _buildHeader() {
+// --- UI Component Classes ---
+
+/// The content widget for the AppBar.
+class _AppBarContent extends StatelessWidget {
+  const _AppBarContent();
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -88,8 +99,14 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
       ],
     );
   }
+}
 
-  Widget _buildOverview() {
+/// The Overview section containing the header and info cards.
+class _OverviewSection extends StatelessWidget {
+  const _OverviewSection();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         SectionHeader(
@@ -118,8 +135,14 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
       ],
     );
   }
+}
 
-  Widget _buildSearchBar() {
+/// The search input field.
+class _SearchBar extends StatelessWidget {
+  const _SearchBar();
+
+  @override
+  Widget build(BuildContext context) {
     return TextField(
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
@@ -133,8 +156,14 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
       ),
     );
   }
+}
 
-  Widget _buildFilterChips() {
+/// The horizontal list of filter chips.
+class _FilterChipsList extends StatelessWidget {
+  const _FilterChipsList();
+
+  @override
+  Widget build(BuildContext context) {
     const filters = ['Today', 'Last 7 days', 'Last 30 days', 'Gold Pass', 'Basic Pass'];
     return SizedBox(
       height: 36,
@@ -154,17 +183,26 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
       ),
     );
   }
+}
 
-  Widget _buildRedemptionsList() {
+/// The list of redemption items.
+class _RedemptionsList extends StatelessWidget {
+  final List<Redemption> redemptions;
+  const _RedemptionsList({required this.redemptions});
+
+  @override
+  Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: _redemptions.length,
-      itemBuilder: (context, index) => RedemptionListItem(redemption: _redemptions[index]),
+      itemCount: redemptions.length,
+      itemBuilder: (context, index) => RedemptionListItem(redemption: redemptions[index]),
       separatorBuilder: (context, index) => const SizedBox(height: 12),
     );
   }
 }
+
+// --- Reusable Component Classes (No Changes) ---
 
 class OverviewCard extends StatelessWidget {
   final String title;
@@ -213,7 +251,6 @@ class RedemptionListItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
-              // ignore: deprecated_member_use
               color: isGold ? AppColors.pendingYellow.withOpacity(0.15) : AppColors.primaryRed.withOpacity(0.15),
               borderRadius: BorderRadius.circular(20),
             ),
