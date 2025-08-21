@@ -58,8 +58,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: //const InvitationKeyScreen(),
-      const MainScreenShell()
+      home: const InvitationKeyScreen(),
+    
    
     );
   }
