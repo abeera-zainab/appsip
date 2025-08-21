@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:appsip/main.dart';
-
+// Assuming your widgets are in a 'widgets' folder
+import 'package:appsip/widgets/primary_button.dart';
+import 'package:appsip/widgets/secondary_button.dart';
 
 
 class LogoutPage extends StatelessWidget {
@@ -11,8 +13,6 @@ class LogoutPage extends StatelessWidget {
     return const Scaffold(
       body: Stack(
         children: [
-          
-        
           // Dialog at the bottom
           Align(
             alignment: Alignment.bottomCenter,
@@ -29,13 +29,20 @@ class LogoutConfirmationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // --- CHANGE START: Adjusting container to match SwitchProfileScreen ---
     return Container(
-      margin: const EdgeInsets.only(bottom: 40, left: 16, right: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-      decoration: BoxDecoration(
+      width: double.infinity, // Take full width
+      // Using fromLTRB to match SwitchProfileScreen's padding exactly
+      padding: const EdgeInsets.fromLTRB(24, 40, 24, 40), 
+      decoration: const BoxDecoration(
         color: AppColors.background,
-        borderRadius: BorderRadius.circular(28),
+        // Only rounding the top corners to create a "docked" bottom sheet look
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(28.0),
+          topRight: Radius.circular(28.0),
+        ),
       ),
+      // --- CHANGE END ---
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -60,53 +67,28 @@ class LogoutConfirmationDialog extends StatelessWidget {
           // Action buttons
           Row(
             children: [
-              // Cancel Button
+              
               Expanded(
-                child: ElevatedButton(
+                child: SecondaryButton(
+                  text: 'Cancel',
                   onPressed: () {
-                      Navigator.of(context).pop();
+                    Navigator.of(context).pop();
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.cardColorsecondary,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.normal, // Bold weight
-                      fontSize: 16,
-                    ),
-                  ),
+                  foregroundColor: AppColors.textSecondary,
+                  borderRadius: 16, 
                 ),
               ),
               const SizedBox(width: 16),
-              // Logout Button
+             
               Expanded(
-                child: ElevatedButton(
+                child: PrimaryButton(
+                  text: 'Logout',
                   onPressed: () {
                     print("Logout pressed");
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.gradientEndRed,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    'Logout',
-                    style: TextStyle(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.normal, 
-                      fontSize: 16,
-                    ),
-                  ),
+                  borderRadius: 16, 
+                  // Matching the vertical padding of the profile swap screen's primary button
+                  padding: const EdgeInsets.symmetric(vertical: 18),
                 ),
               ),
             ],
