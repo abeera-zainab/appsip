@@ -67,7 +67,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     children: [
                       const SizedBox(height: 30),
                       
-                      // Current Password Field using the new widget
                       PasswordInputField(
                         label: 'Current Password',
                         controller: _currentPasswordController,
@@ -78,7 +77,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       ),
                       const SizedBox(height: 10),
 
-                      // New Password Field using the new widget
                       PasswordInputField(
                         label: 'New Password',
                         controller: _newPasswordController,
@@ -89,7 +87,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       ),
                       const SizedBox(height: 10),
 
-                      // Confirm New Password Field using the new widget
                       PasswordInputField(
                         label: 'Confirm New Password',
                         controller: _confirmPasswordController,
@@ -108,11 +105,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   children: [
                     Expanded(
                       child: SecondaryButton(
+                        icon: SvgPicture.asset(
+                          'assets/svg/xmark.svg',
+                          colorFilter: const ColorFilter.mode(AppColors.primaryRed, BlendMode.srcIn),
+                        ),
                         text: 'Cancel',
                         onPressed: () => Navigator.of(context).pop(),
-                        foregroundColor: AppColors.textSecondary ,
+                        foregroundColor: AppColors.gradientEndRed, 
                         borderRadius: 16.0,
-                        // SecondaryButton defaults to vertical: 16 padding
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -127,9 +127,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           );
                         },
                         borderRadius: 16.0,
-                   
                         padding: const EdgeInsets.symmetric(vertical: 18),
-                       
+                        gradient: const LinearGradient(
+                          colors: [AppColors.primaryRed, AppColors.gradientEndRed],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
                         textStyle: const TextStyle(
                           color: AppColors.textPrimary,
                           fontWeight: FontWeight.normal,
@@ -149,6 +152,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   }
 }
 
+// PasswordInputField class remains unchanged...
 class PasswordInputField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
@@ -168,7 +172,6 @@ class PasswordInputField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Label with a red asterisk using RichText
         RichText(
           text: TextSpan(
             style: const TextStyle(
@@ -185,7 +188,6 @@ class PasswordInputField extends StatelessWidget {
             ],
           ),
         ),
-      
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,
@@ -199,7 +201,6 @@ class PasswordInputField extends StatelessWidget {
               color: AppColors.textSecondary,
               fontFamily: 'RedHatDisplay',
               fontSize: 16,
-            
             ),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(16.0),

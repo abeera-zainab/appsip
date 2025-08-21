@@ -103,11 +103,11 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: 
-    //const InvitationKeyScreen()
+    const InvitationKeyScreen()
       //const MainScreenShell(),
        //const TellUsAboutYourselfScreen(),
        //const ProfileScreen()
-       const DeleteAccountScreen()
+       //const DeleteAccountScreen()
        //const RegisterBartenderScreen()22
        //const BankDetailsScreen()
       
