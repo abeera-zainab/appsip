@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart';
-import 'package:appsip/widgets/section_header.dart';
 
+import 'package:appsip/widgets/section_header.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 
 class Redemption {

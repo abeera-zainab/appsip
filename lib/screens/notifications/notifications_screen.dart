@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
-// Assuming these files exist and are correctly set up
-import 'package:appsip/main.dart';
+
 import 'package:appsip/screens/notifications/notifications_settings_screen.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 // --- Data Model for a Notification (Updated) ---
 class NotificationModel {

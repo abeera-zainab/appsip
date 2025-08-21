@@ -1,10 +1,11 @@
 import 'package:appsip/screens/help-and-support/submit-issue-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:appsip/main.dart';
+
 // Import your custom widgets
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/custom_dropdown_field.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 class HelpAndSupportScreen extends StatefulWidget {
   const HelpAndSupportScreen({super.key});

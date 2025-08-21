@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:appsip/main.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 class PhotoUploadWidget extends StatelessWidget {
   final File? selectedImage;

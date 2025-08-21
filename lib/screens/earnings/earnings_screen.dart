@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart';
+
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/secondary_button.dart';
 import 'package:appsip/widgets/section_header.dart';
 import 'package:appsip/widgets/withdrawal_list_item.dart';
 import 'package:appsip/screens/earnings/edit_bank_details_screen.dart';
 import 'package:appsip/widgets/withdraw_amount_sheet.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 class EarningsScreen extends StatelessWidget {
   const EarningsScreen({super.key});

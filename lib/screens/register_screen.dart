@@ -1,9 +1,10 @@
-import 'package:appsip/main.dart';
+
 import 'package:appsip/screens/tell_us_about_yourself_screen.dart' show TellUsAboutYourselfScreen;
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:appsip/widgets/custom_text_input_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 class RegisterBartenderScreen extends StatefulWidget {
   const RegisterBartenderScreen({super.key});

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart';
+
 import 'dart:async';
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 class WithdrawAmountSheet extends StatefulWidget {
   const WithdrawAmountSheet({super.key});

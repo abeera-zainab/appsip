@@ -1,11 +1,12 @@
 import 'package:appsip/screens/password/change_password_updatescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:appsip/main.dart';
+
 
 // Import your custom button widgets
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/secondary_button.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 
 class ChangePasswordScreen extends StatefulWidget {

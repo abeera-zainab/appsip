@@ -6,11 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 
-// Import your widgets and colors
-import 'package:appsip/main.dart';
+
 import 'package:appsip/widgets/photo_upload_widget.dart';
 import 'package:appsip/widgets/color_grid.dart';
-// Import the PrimaryButton widget
+import 'package:appsip/theme/app_colors.dart';
 import 'package:appsip/widgets/primary_button.dart';
 
 class TellUsAboutYourselfScreen extends StatefulWidget {

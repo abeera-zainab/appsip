@@ -8,10 +8,10 @@ import 'package:appsip/screens/profile_swap.dart';
 import 'package:appsip/screens/terms-and-privacy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:appsip/main.dart'; // Imports AppColors
+
 import 'package:appsip/widgets/profile_header_card.dart';
 import 'package:appsip/widgets/profile_menu_item.dart';
-
+import 'package:appsip/theme/app_colors.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

@@ -1,7 +1,6 @@
-// In lib/widgets/secondary_button.dart
-import 'package:appsip/main.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+import 'package:appsip/theme/app_colors.dart';
 class SecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;

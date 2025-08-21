@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart';
-// Import the custom button widgets
+
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/secondary_button.dart';
-
+import 'package:appsip/theme/app_colors.dart';
 class SwitchProfileScreen extends StatelessWidget {
   const SwitchProfileScreen({super.key});
 

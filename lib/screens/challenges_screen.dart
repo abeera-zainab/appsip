@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:appsip/main.dart';
+
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:appsip/widgets/section_header.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 class ChallengesScreen extends StatelessWidget {
   const ChallengesScreen({super.key});

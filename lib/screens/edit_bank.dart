@@ -1,10 +1,11 @@
 import 'package:appsip/screens/redeems/success_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart';
+
 import 'package:appsip/widgets/custom_text_input_field.dart';
 import 'package:appsip/widgets/primary_button.dart';
 // Removed the unused SecondaryButton import
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:appsip/theme/app_colors.dart';
 
 // Converted to StatefulWidget to handle dropdown state
 class BankDetailsScreen extends StatefulWidget {

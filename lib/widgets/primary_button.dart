@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart'; 
 
+import 'package:appsip/theme/app_colors.dart';
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;

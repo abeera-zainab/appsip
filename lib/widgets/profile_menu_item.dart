@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:appsip/main.dart';
+
+import 'package:appsip/theme/app_colors.dart';
 
 class ProfileMenuItem extends StatelessWidget {
   final String svgIconPath;

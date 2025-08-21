@@ -1,6 +1,7 @@
 import 'dart:math'; // Import for math functions like pi, cos, and sin
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart'; 
+
+import 'package:appsip/theme/app_colors.dart';
 
 class SunburstPainter extends CustomPainter {
   @override

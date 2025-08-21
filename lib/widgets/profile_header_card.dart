@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:appsip/main.dart'; // Imports AppColors
 
+import 'package:appsip/theme/app_colors.dart';
 class ProfileHeaderCard extends StatelessWidget {
   final String avatarImagePath;
   final String name;
