@@ -2,11 +2,16 @@ import 'package:appsip/screens/challenges_screen.dart';
 import 'package:appsip/screens/invitation_screen.dart';
 import 'package:appsip/screens/main_screen_shell.dart';
 import 'package:flutter/material.dart';
-// --- CHANGE 1: Import the new colors file ---
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:appsip/theme/app_colors.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

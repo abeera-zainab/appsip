@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "487639026647",
+    "project_id": "sipskip-63920",
+    "storage_bucket": "sipskip-63920.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487639026647:android:35d15b8b40457cfe00d992",
+        "android_client_info": {
+          "package_name": "com.example.appsip"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9P0K_lfgSDGQjVKL8zvEQsImUOP7H-rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
