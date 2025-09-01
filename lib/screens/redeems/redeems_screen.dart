@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart'; // Added for SVG support
 
 import 'package:appsip/widgets/section_header.dart';
 import 'package:appsip/theme/app_colors.dart';
@@ -25,7 +26,7 @@ class RedeemsScreen extends StatefulWidget {
 }
 
 class _RedeemsScreenState extends State<RedeemsScreen> {
- 
+
   final List<Redemption> _redemptions = [
     Redemption(name: 'Katie S.', time: '7:35:41 am', id: 'SKP-2078', type: PassType.Gold, amount: 5.00),
     Redemption(name: 'Chris G.', time: '1:28:15 pm', id: 'SKP-4945', type: PassType.Basic, amount: 2.50),
@@ -49,13 +50,13 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const _OverviewSection(),      // Replaced method with class
+                const _OverviewSection(),     
                 const SizedBox(height: 24),
-                const _SearchBar(),            // Replaced method with class
-                const SizedBox(height: 20),
-                const _FilterChipsList(),      // Replaced method with class
-                const SizedBox(height: 24),
-                _RedemptionsList(redemptions: _redemptions), // Replaced method with class
+                const _SearchBar(),            
+                const SizedBox(height: 12), 
+                const _FilterChipsList(),      
+                const SizedBox(height: 10), 
+                _RedemptionsList(redemptions: _redemptions), 
                 const SizedBox(height: 24),
               ],
             ),
@@ -66,9 +67,7 @@ class _RedeemsScreenState extends State<RedeemsScreen> {
   }
 }
 
-// --- UI Component Classes ---
 
-/// The content widget for the AppBar.
 class _AppBarContent extends StatelessWidget {
   const _AppBarContent();
 
@@ -88,11 +87,17 @@ class _AppBarContent extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(color: AppColors.cardColorsecondary, borderRadius: BorderRadius.circular(20)),
-          child: const Row(
+          child: Row(
             children: [
-              Icon(Icons.account_balance_wallet_outlined, size: 20, color: AppColors.textSecondary),
-              SizedBox(width: 8),
-              Text('\$12,723.32', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)),
+              
+              SvgPicture.asset(
+                'assets/svg/wallet.svg', 
+                width: 20, 
+                height: 20, 
+                colorFilter: const ColorFilter.mode(AppColors.textSecondary, BlendMode.srcIn),
+              ),
+              const SizedBox(width: 8),
+              const Text('\$12,723.32', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 14)),
             ],
           ),
         ),
@@ -101,7 +106,7 @@ class _AppBarContent extends StatelessWidget {
   }
 }
 
-/// The Overview section containing the header and info cards.
+
 class _OverviewSection extends StatelessWidget {
   const _OverviewSection();
 
@@ -110,14 +115,19 @@ class _OverviewSection extends StatelessWidget {
     return Column(
       children: [
         SectionHeader(
-          title: 'Overview',
+          title: ("Overview"),
+          titleStyle: const TextStyle( 
+            color:  AppColors.textPrimary,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
           trailing: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(color: AppColors.cardColorsecondary, borderRadius: BorderRadius.circular(20)),
             child: const Row(
               children: [
-                Text('Today', style: TextStyle(color: Colors.white)),
-                Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
+                Text('Today', style: TextStyle(color: AppColors.textPrimary)),
+                Icon(Icons.keyboard_arrow_down, color: AppColors.textPrimary, size: 20),
               ],
             ),
           ),
@@ -148,7 +158,16 @@ class _SearchBar extends StatelessWidget {
       decoration: InputDecoration(
         hintText: 'Search a name, id or type...',
         hintStyle: const TextStyle(color: AppColors.textSecondary),
-        prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary),
+        
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(12.0), 
+          child: SvgPicture.asset(
+            'assets/svg/search.svg', 
+            width: 20,
+            height: 20,
+            colorFilter: const ColorFilter.mode(AppColors.textSecondary, BlendMode.srcIn),
+          ),
+        ),
         filled: true,
         fillColor: AppColors.cardColorsecondary,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
@@ -174,7 +193,7 @@ class _FilterChipsList extends StatelessWidget {
           return Chip(
             label: Text(filters[index]),
             labelStyle: const TextStyle(color: AppColors.textSecondary),
-            backgroundColor: AppColors.cardColorsecondary,
+            backgroundColor: AppColors.cardColor,
             side: BorderSide.none,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           );
@@ -197,12 +216,12 @@ class _RedemptionsList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: redemptions.length,
       itemBuilder: (context, index) => RedemptionListItem(redemption: redemptions[index]),
-      separatorBuilder: (context, index) => const SizedBox(height: 12),
+      separatorBuilder: (context, index) => const SizedBox(height: 6), 
     );
   }
 }
 
-// --- Reusable Component Classes (No Changes) ---
+
 
 class OverviewCard extends StatelessWidget {
   final String title;
@@ -216,9 +235,15 @@ class OverviewCard extends StatelessWidget {
       decoration: BoxDecoration(color: AppColors.cardColorsecondary, borderRadius: BorderRadius.circular(16)),
       child: Column(
         children: [
-          Text(title, style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+          Text(
+            title, 
+            style: const TextStyle(color: AppColors.textSecondary, fontSize: 14), // Changed to match Figma
+          ),
           const SizedBox(height: 8),
-          Text(value, style: const TextStyle(color: AppColors.primaryRed, fontSize: 24, fontWeight: FontWeight.bold)),
+          Text(
+            value, 
+            style: const TextStyle(color: AppColors.primaryRed, fontSize: 24, fontWeight: FontWeight.bold), // Changed to match Figma
+          ),
         ],
       ),
     );

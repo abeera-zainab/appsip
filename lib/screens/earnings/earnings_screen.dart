@@ -200,12 +200,12 @@ class _RecentWithdrawalsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Recent Withdrawals', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 16),
-        const SingleChildScrollView(
+        Text('Recent Withdrawals', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 16),
+        SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:appsip/theme/app_colors.dart';
+
 class PrimaryButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed; // Made onPressed nullable for disabled state
   final bool isExpanded;
   final Color? backgroundColor;
   final Color? foregroundColor;
   final Widget? icon;
   final double borderRadius;
-  
+
   final LinearGradient? gradient;
   final List<BoxShadow>? boxShadow;
   final EdgeInsets? padding;
@@ -18,7 +19,7 @@ class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    required this.onPressed, // Still required, but can be passed as null
     this.isExpanded = false,
     this.backgroundColor,
     this.foregroundColor,
@@ -42,28 +43,38 @@ class PrimaryButton extends StatelessWidget {
     final style = ElevatedButton.styleFrom(
       backgroundColor: backgroundColor ?? AppColors.gradientEndRed,
       foregroundColor: foregroundColor ?? Colors.white,
-      padding: padding ?? const EdgeInsets.symmetric(vertical: 18),
+      padding: padding ?? const EdgeInsets.symmetric(vertical: 18, horizontal: 24), // Added horizontal padding for consistency
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       textStyle: textStyle ?? const TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
+      elevation: 0, // Explicitly remove elevation for consistency
     );
 
-    final Widget button = (icon != null)
-        ? ElevatedButton.icon(
-            onPressed: onPressed,
-            style: style,
-            icon: icon!,
-            label: Text(text),
-          )
-        : ElevatedButton(
-            onPressed: onPressed,
-            style: style,
-            child: Text(text),
-          );
+    // Common content for the button (text and optional icon)
+    final Widget buttonContent = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: isExpanded ? MainAxisSize.max : MainAxisSize.min, // Use min size if not expanded
+      children: [
+        if (icon != null) ...[
+          icon!,
+          const SizedBox(width: 10), // Spacing between icon and text
+        ],
+        Text(text),
+      ],
+    );
+
+    final Widget button = ElevatedButton(
+      onPressed: onPressed, // onPressed can now be null to disable the button
+      style: style,
+      child: buttonContent, // Use the common button content
+    );
 
     if (isExpanded) {
-      return Row(children: [Expanded(child: button)]);
+      return SizedBox( // Use SizedBox to control the width for expanded buttons
+        width: double.infinity,
+        child: button,
+      );
     }
     return button;
   }
@@ -89,11 +100,9 @@ class PrimaryButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: onPressed,
+          onTap: onPressed, // onPressed can now be null
           borderRadius: BorderRadius.circular(borderRadius),
           child: Padding(
-            // --- FIX: Using the same padding logic as the standard button ---
-            // This now correctly respects the padding passed from the screen.
             padding: padding ?? const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
             child: buttonContent,
           ),
@@ -102,7 +111,10 @@ class PrimaryButton extends StatelessWidget {
     );
 
     if (isExpanded) {
-      return Row(children: [Expanded(child: button)]);
+      return SizedBox( // Use SizedBox to control the width for expanded buttons
+        width: double.infinity,
+        child: button,
+      );
     }
     return button;
   }

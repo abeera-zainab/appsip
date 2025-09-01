@@ -1,3 +1,4 @@
+import 'package:appsip/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SectionHeader extends StatelessWidget {
@@ -17,7 +18,7 @@ class SectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: titleStyle ?? const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+        Text(title, style: titleStyle ?? const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: AppColors.textPrimary,fontFamily: 'RedHatDisplay')),
         if (trailing != null) trailing!,
       ],
     );

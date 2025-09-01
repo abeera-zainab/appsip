@@ -1,5 +1,5 @@
-
-import 'package:appsip/screens/tell_us_about_yourself_screen.dart' show TellUsAboutYourselfScreen;
+import 'package:appsip/screens/auth/verify_email.dart'; // Corrected import path
+import 'package:appsip/services/firebase_auth_service.dart'; // Import the service
 import 'package:appsip/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:appsip/widgets/custom_text_input_field.dart';
@@ -19,6 +19,17 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
   bool _isConfirmPasswordObscured = true;
   final TextEditingController _dateOfBirthController = TextEditingController();
 
+  // Controllers for new fields
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController(); // Added
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  final FirebaseAuthService _authService = FirebaseAuthService(); // Instantiate the service
+  bool _isLoading = false; // To show loading state
+
   // SVG asset paths
   final String lockIconPath = 'assets/svg/lock.svg';
   final String eyeIconPath = 'assets/svg/eyeopen.svg';
@@ -31,7 +42,42 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
   @override
   void dispose() {
     _dateOfBirthController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _phoneNumberController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _registerUser() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        await _authService.registerWithEmailAndPassword(
+          _emailController.text.trim(),
+          _passwordController.text.trim(),
+        );
+        if (mounted) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const VerifyEmailScreen()),
+          );
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(e.toString().replaceFirst('Exception: ', ''))),
+          );
+        }
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
   }
 
   @override
@@ -51,19 +97,33 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // First Name and Last Name
-              const Row(
+              Row(
                 children: [
                   Expanded(
                     child: CustomTextInputField(
                       label: "First Name *",
                       hint: "Type here...",
+                      controller: _firstNameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your first name';
+                        }
+                        return null;
+                      },
                     ),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Expanded(
                     child: CustomTextInputField(
                       label: "Last Name *",
                       hint: "Type here...",
+                      controller: _lastNameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your last name';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                 ],
@@ -76,11 +136,20 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                 hint: "example@email.com",
                 prefixSvgPath: mailIconPath,
                 keyboardType: TextInputType.emailAddress,
+                controller: _emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email address';
+                  }
+                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 20),
 
-              // --- MODIFICATION START ---
-              // Changed the Phone Number label to RichText to add a red asterisk
+              // Phone Number label
               RichText(
                 text: TextSpan(
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -97,7 +166,6 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                   ],
                 ),
               ),
-              // --- MODIFICATION END ---
               const SizedBox(height: 8),
 
               // Phone Number input fields with reduced spacing
@@ -109,9 +177,13 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                     width: 80,
                     child: TextFormField(
                       readOnly: true,
-                      onTap: () { /* TODO: Implement country code picker logic */ },
+                      onTap: () {
+                        /* TODO: Implement country code picker logic */
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Country code picker not implemented yet.')),
+                        );
+                      },
                       decoration: InputDecoration(
-                        
                         filled: true,
                         fillColor: AppColors.cardColorsecondary,
                         prefixIcon: Padding(
@@ -131,6 +203,7 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                   // Phone Number Input
                   Expanded(
                     child: TextFormField(
+                      controller: _phoneNumberController, // Added controller
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         hintText: "+1(XXX) XXXX XXX",
@@ -142,6 +215,9 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Phone number is required';
+                        }
+                        if (!RegExp(r'^\+?[0-9]{10,14}$').hasMatch(value)) { // Basic phone number validation
+                          return 'Please enter a valid phone number';
                         }
                         return null;
                       },
@@ -165,11 +241,40 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                     _dateOfBirthController.text = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
                   }
                 },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please choose your date of birth';
+                  }
+                  // Basic age validation (21 years old)
+                  try {
+                    final parts = value.split('/');
+                    if (parts.length == 3) {
+                      final day = int.parse(parts[0]);
+                      final month = int.parse(parts[1]);
+                      final year = int.parse(parts[2]);
+                      final dob = DateTime(year, month, day);
+                      final today = DateTime.now();
+                      final age = today.year - dob.year;
+                      if (today.month < dob.month || (today.month == dob.month && today.day < dob.day)) {
+                        // If birthday hasn't occurred yet this year
+                        if (age - 1 < 21) {
+                          return 'You must be 21 or above';
+                        }
+                      } else {
+                        if (age < 21) {
+                          return 'You must be 21 or above';
+                        }
+                      }
+                    }
+                  } catch (e) {
+                    return 'Invalid date format';
+                  }
+                  return null;
+                },
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0, left: 4.0),
                 child: Text(
-                
                   "Your age must be 21 or above",
                   style: TextStyle(color: Theme.of(context).colorScheme.error.withOpacity(0.9), fontSize: 12),
                 ),
@@ -188,6 +293,16 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                     _isPasswordObscured = !_isPasswordObscured;
                   });
                 },
+                controller: _passwordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a password';
+                  }
+                  if (value.length < 8) {
+                    return 'Password must be at least 8 characters long';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 20),
 
@@ -203,20 +318,35 @@ class _RegisterBartenderScreenState extends State<RegisterBartenderScreen> {
                     _isConfirmPasswordObscured = !_isConfirmPasswordObscured;
                   });
                 },
+                controller: _confirmPasswordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please confirm your password';
+                  }
+                  if (value != _passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 30),
 
               // Create Account Button
               PrimaryButton(
-                text: "Create Account",
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const TellUsAboutYourselfScreen()));
-                  }
-                },
+                text: _isLoading ? "Creating Account..." : "Create Account",
+                onPressed: _isLoading ? null : _registerUser, // Disable button while loading
                 isExpanded: true,
                 borderRadius: 16,
-                icon: SvgPicture.asset('assets/svg/create-account.svg'),
+                icon: _isLoading
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : SvgPicture.asset('assets/svg/create-account.svg'),
               ),
               const SizedBox(height: 20),
             ],

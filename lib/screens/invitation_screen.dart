@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:appsip/screens/register_screen.dart' show RegisterBartenderScreen;
+import 'package:appsip/screens/auth/register_screen.dart' show RegisterBartenderScreen;
 import 'package:appsip/widgets/primary_button.dart';
 // --- CHANGE: Import the custom text field widget ---
 import 'package:appsip/widgets/custom_text_input_field.dart';
